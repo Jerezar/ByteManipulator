@@ -1,2 +1,4 @@
-apt-get install git --yes
-apt-get install cmake --yes
+#!/usr/bin/env bash
+apt-get install --yes cmake
+apt-get install --yes make
+apt-get install --yes g++
