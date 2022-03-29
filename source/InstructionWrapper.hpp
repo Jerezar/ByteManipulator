@@ -6,7 +6,7 @@
 
 class InstructionWrapper{
     public:
-        virtual std::string execute(std::vector<std::string> args = 0;
+        virtual std::string execute(std::vector<std::string> args) = 0;
 };
 
 using Instruction = std::shared_ptr<InstructionWrapper>;
