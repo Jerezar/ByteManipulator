@@ -1,7 +1,7 @@
 #ifndef BYTEMANIPULATOR_HPP
 #define BYTEMANIPULATOR_HPP
 
-#include"InputOutputHandler.hpp"
+#include"InputOutputFacility.hpp"
 #include "InstructionRegistry.hpp"
 
 class ByteManipulator{
@@ -9,7 +9,7 @@ class ByteManipulator{
         InputOutputHandler io;
         InstructionSet commandSet;
     public:
-        ByteManipulator(InstructionSet cS);
+        ByteManipulator(InstructionSet cS, InputOutputHandler _io);
         void loop();
 };
 

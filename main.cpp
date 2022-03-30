@@ -11,6 +11,9 @@
 #include "InstructionWrapper.hpp"
 #include "NoOperation.hpp"
 
+#include "InputOutputFacility.hpp"
+#include "StandardStreamHandler.hpp"
+
 int main(int argc, char* argv[]){
 
     Instruction test = std::make_shared<NoOperation>();
@@ -23,7 +26,9 @@ int main(int argc, char* argv[]){
 
     InstructionSet commands = std::make_shared<InstructionMap>(commandMap);
     
-    ByteManipulator b(commands);
+    InputOutputHandler io = std::make_shared<StandardStreamHandler>();
+    
+    ByteManipulator b(commands, io);
     
     b.loop();
     
