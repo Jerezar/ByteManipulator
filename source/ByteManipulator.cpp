@@ -5,6 +5,10 @@
 
 #include "InstructionWrapper.hpp"
 
+ByteManipulator::ByteManipulator(InstructionSet cS){
+    commandSet = cS;
+}
+
 void ByteManipulator::loop(){
     while (true){
         std::string input = io->read("Input: ");

@@ -9,6 +9,7 @@ class ByteManipulator{
         InputOutputHandler io;
         InstructionSet commandSet;
     public:
+        ByteManipulator(InstructionSet cS);
         void loop();
 };
 
