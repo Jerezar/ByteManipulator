@@ -1,5 +1,5 @@
-#ifndef INPUTOUTPUTHANDLER_HPP
-#define INPUTOUTPUTHANDLER_HPP
+#ifndef INPUTOUTPUTFACILITY_HPP
+#define INPUTOUTPUTFACILITY_HPP
 
 #include <memory>
 #include <string>
