@@ -15,5 +15,5 @@ std::string StandardStreamHandler::read(std::string prompt){
 }
 
 void StandardStreamHandler::print(std::string output){
-    std::cout << output;
+    std::cout << output << std::endl;
 }

@@ -8,19 +8,24 @@
 #include "InstructionRegistry.hpp"
 #include "InstructionMap.hpp"
 
+#include "MockFiddler.hpp"
+
 #include "InstructionWrapper.hpp"
-#include "NoOperation.hpp"
+
+#include "FiddlerCommands/FiddlerAddition.hpp"
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
 
 int main(int argc, char* argv[]){
 
-    Instruction test = std::make_shared<NoOperation>();
+    Fiddler fiddler = std::make_shared<MockFiddler>();
+
+    Instruction test = std::make_shared<FiddlerAddition>(fiddler);
 
     std::map<std::string, Instruction> commandMap(
         {
-            {"test", test}
+            {"add", test}
         }
     );
 
