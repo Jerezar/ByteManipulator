@@ -18,6 +18,7 @@
 #include "NumberStringParser.hpp"
 #include "StringNumberConverter.hpp"
 #include "FiddlerCommands/FiddlerAddition.hpp"
+#include "FiddlerCommands/FiddlerSubtraction.hpp"
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
@@ -30,11 +31,11 @@ int main(int argc, char* argv[]){
     
     Mfd_View display = std::make_shared<FiddlerFullView>();
 
-    Instruction test = std::make_shared<FiddlerAddition>(fiddler, parser, display);
 
     std::map<std::string, Instruction> commandMap(
         {
-            {"add", test}
+            {"add", std::make_shared<FiddlerAddition>(fiddler, parser, display)},
+            {"sub", std::make_shared<FiddlerSubtraction>(fiddler, parser, display)}
         }
     );
 
