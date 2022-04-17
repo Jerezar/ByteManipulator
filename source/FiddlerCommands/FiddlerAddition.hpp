@@ -7,6 +7,7 @@ class FiddlerAddition: public FiddlerCommand{
     public:
         FiddlerAddition(Fiddler _target): FiddlerCommand(_target){};
         virtual std::string execute(std::vector<std::string> args) override;
+        virtual std::string usage() override;
 };
 
 #endif

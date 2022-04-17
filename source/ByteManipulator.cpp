@@ -3,6 +3,8 @@
 #include <string>
 #include "string_utils.hpp"
 
+#include <exception>
+
 #include "InstructionWrapper.hpp"
 
 ByteManipulator::ByteManipulator(InstructionSet cS, InputOutputHandler _io){
@@ -19,7 +21,12 @@ void ByteManipulator::loop(){
         std::vector< std::string > args = split( input, " ");
         
         Instruction command = commandSet->getInstruction(args[0]);
-        std::string output = command->execute(args);
+        std::string output;
+        try{
+            output = command->execute(args);
+        } catch (std::exception e){
+            io->print(command->usage());
+        }
         
         io->print(output);
     }
