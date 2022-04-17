@@ -10,7 +10,7 @@ std::string FiddlerSubtraction::execute(std::vector<std::string> args) {
     
     int result = target->byte - value;
     
-    target->carry = (result > 255 || result < 0);
+    target->carry = (target->byte < value);
     
     target->byte = result;
     
@@ -22,5 +22,5 @@ std::string FiddlerSubtraction::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerSubtraction::usage(){
-    return std::string("add <unsigned operand>");
+    return std::string("sub <unsigned operand>");
 }
