@@ -4,7 +4,7 @@
 
 #include <regex>
 
-uint8_t StringNumberConverter::getValueFromString(std::string string_rep){
+int StringNumberConverter::getValueFromString(std::string string_rep){
     
     std::regex bin_pat("0[bB]([01]+)");
     

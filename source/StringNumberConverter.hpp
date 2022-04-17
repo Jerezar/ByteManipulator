@@ -6,7 +6,9 @@
 
 #include <exception>
 
-class StringNumberConverter{
+#include "NumberStringParser.hpp"
+
+class StringNumberConverter: public NumberStringParser{
 
 
     public:
@@ -15,7 +17,7 @@ class StringNumberConverter{
         
         };
         
-        static uint8_t getValueFromString(std::string string_rep);
+        virtual int getValueFromString(std::string string_rep) override;
         static uint8_t getBinaryFromString(std::string string_rep);
         static uint8_t getOctalFromString(std::string string_rep);
         static uint8_t getHexFromString(std::string string_rep);
