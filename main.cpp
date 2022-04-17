@@ -10,6 +10,9 @@
 
 #include "MockFiddler.hpp"
 
+#include "MockFiddlerView.hpp"
+#include "FiddlerFullView.hpp"
+
 #include "InstructionWrapper.hpp"
 
 #include "NumberStringParser.hpp"
@@ -24,8 +27,10 @@ int main(int argc, char* argv[]){
     Fiddler fiddler = std::make_shared<MockFiddler>();
 
     ValueParser parser = std::make_shared<StringNumberConverter>();
+    
+    Mfd_View display = std::make_shared<FiddlerFullView>();
 
-    Instruction test = std::make_shared<FiddlerAddition>(fiddler, parser);
+    Instruction test = std::make_shared<FiddlerAddition>(fiddler, parser, display);
 
     std::map<std::string, Instruction> commandMap(
         {
