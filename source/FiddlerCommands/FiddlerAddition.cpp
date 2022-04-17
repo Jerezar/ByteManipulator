@@ -4,7 +4,7 @@
 std::string FiddlerAddition::execute(std::vector<std::string> args) {
     if(args.size() == 1){
         throw std::exception();
-        return std::to_string( (int) target->byte);
+        return view->display(target);
     }
     int value = parser->getValueFromString(args.at(1));
     
@@ -13,7 +13,7 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
     target->carry = (result > 255 || result < 0);
     
     target->byte = result;
-    return std::to_string( (int) target->byte);
+    return view->display(target);
 }
 
 std::string FiddlerAddition::usage(){
