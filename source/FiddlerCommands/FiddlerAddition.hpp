@@ -3,9 +3,13 @@
 
 #include "FiddlerCommand.hpp"
 
+#include "NumberStringParser.hpp"
+
 class FiddlerAddition: public FiddlerCommand{
+    private:
+        ValueParser parser;
     public:
-        FiddlerAddition(Fiddler _target): FiddlerCommand(_target){};
+        FiddlerAddition(Fiddler _target, ValueParser _parser): FiddlerCommand(_target){ parser = _parser;};
         virtual std::string execute(std::vector<std::string> args) override;
         virtual std::string usage() override;
 };

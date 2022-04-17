@@ -6,7 +6,7 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
         throw std::exception();
         return std::to_string( (int) target->byte);
     }
-    int value = std::stoi(args.at(1));
+    int value = parser->getValueFromString(args.at(1));
     
     int result = value + target->byte;
     
@@ -17,5 +17,5 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerAddition::usage(){
-    return std::string("add <operand>");
+    return std::string("add <unsigned operand>");
 }

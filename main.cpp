@@ -12,6 +12,8 @@
 
 #include "InstructionWrapper.hpp"
 
+#include "NumberStringParser.hpp"
+#include "StringNumberConverter.hpp"
 #include "FiddlerCommands/FiddlerAddition.hpp"
 
 #include "InputOutputFacility.hpp"
@@ -21,7 +23,9 @@ int main(int argc, char* argv[]){
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 
-    Instruction test = std::make_shared<FiddlerAddition>(fiddler);
+    ValueParser parser = std::make_shared<StringNumberConverter>();
+
+    Instruction test = std::make_shared<FiddlerAddition>(fiddler, parser);
 
     std::map<std::string, Instruction> commandMap(
         {
