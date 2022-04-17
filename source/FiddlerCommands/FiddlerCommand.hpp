@@ -7,6 +7,8 @@
 class FiddlerCommand: public InstructionWrapper{
     protected:
         Fiddler target;
+        ValueParser parser;
+        
     public:
         FiddlerCommand(Fiddler _target){
             target = _target;
