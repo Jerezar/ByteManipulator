@@ -13,6 +13,11 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
     target->carry = (result > 255 || result < 0);
     
     target->byte = result;
+    
+    target->zero = (target->byte == 0);
+    target->updateParity();
+    
+    
     return view->display(target);
 }
 
