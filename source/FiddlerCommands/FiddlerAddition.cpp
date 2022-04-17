@@ -6,7 +6,13 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
         throw std::exception();
         return std::to_string( (int) target->byte);
     }
-    target->byte += std::stoi(args.at(1));
+    int value = std::stoi(args.at(1));
+    
+    int result = value + target->byte;
+    
+    target->carry = (result > 255 || result < 0);
+    
+    target->byte = result;
     return std::to_string( (int) target->byte);
 }
 

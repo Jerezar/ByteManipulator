@@ -7,6 +7,7 @@
 
 struct MockFiddler{
     uint8_t byte;
+    bool carry = false;
 };
 
 using Fiddler = std::shared_ptr<MockFiddler>;
