@@ -15,6 +15,7 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
     target->byte = result;
     
     target->zero = (target->byte == 0);
+    target->rest = 0;
     target->updateParity();
     
     

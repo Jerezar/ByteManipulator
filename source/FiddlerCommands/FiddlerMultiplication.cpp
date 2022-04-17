@@ -13,6 +13,7 @@ std::string FiddlerMultiplication::execute(std::vector<std::string> args) {
     target->carry = (result < 0 || result > 255);
     
     target->byte = result;
+    target->rest = result - target->byte;
     
     target->zero = (target->byte == 0);
     target->updateParity();

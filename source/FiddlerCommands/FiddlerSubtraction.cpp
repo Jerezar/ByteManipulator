@@ -13,6 +13,7 @@ std::string FiddlerSubtraction::execute(std::vector<std::string> args) {
     target->carry = (target->byte < value);
     
     target->byte = result;
+    target->rest = 0;
     
     target->zero = (target->byte == 0);
     target->updateParity();
