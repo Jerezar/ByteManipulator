@@ -10,15 +10,8 @@ struct MockFiddler{
     bool carry = false;
     bool zero;
     bool parity;
-    void updateParity(){
-        bool result = true;
-        for (int i = 0; i < 8; i++){
-            if((byte & (1 << i))){
-                result = !result;
-            }
-        }
-        parity = result;
-    };
+    int rest;
+    void updateParity();
 };
 
 using Fiddler = std::shared_ptr<MockFiddler>;
