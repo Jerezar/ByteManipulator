@@ -21,10 +21,13 @@
 #include "FiddlerCommands/FiddlerSubtraction.hpp"
 #include "FiddlerCommands/FiddlerMultiplication.hpp"
 #include "FiddlerCommands/FiddlerDivision.hpp"
+
 #include "FiddlerCommands/FiddlerAnd.hpp"
 #include "FiddlerCommands/FiddlerOr.hpp"
 #include "FiddlerCommands/FiddlerXor.hpp"
 #include "FiddlerCommands/FiddlerXnor.hpp"
+
+#include "FiddlerCommands/FiddlerWrite.hpp"
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
@@ -47,7 +50,8 @@ int main(int argc, char* argv[]){
             {"and", std::make_shared<FiddlerAnd>(fiddler, parser, display)},
             {"or", std::make_shared<FiddlerOr>(fiddler, parser, display)},
             {"xor", std::make_shared<FiddlerXor>(fiddler, parser, display)},
-            {"xnor", std::make_shared<FiddlerXnor>(fiddler, parser, display)}
+            {"xnor", std::make_shared<FiddlerXnor>(fiddler, parser, display)},
+            {"write", std::make_shared<FiddlerWrite>(fiddler, parser, display)}
         }
     );
 
