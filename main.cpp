@@ -28,6 +28,7 @@
 #include "FiddlerCommands/FiddlerXnor.hpp"
 
 #include "FiddlerCommands/FiddlerWrite.hpp"
+#include "FiddlerCommands/FiddlerSet.hpp"
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
@@ -51,7 +52,8 @@ int main(int argc, char* argv[]){
             {"or", std::make_shared<FiddlerOr>(fiddler, parser, display)},
             {"xor", std::make_shared<FiddlerXor>(fiddler, parser, display)},
             {"xnor", std::make_shared<FiddlerXnor>(fiddler, parser, display)},
-            {"write", std::make_shared<FiddlerWrite>(fiddler, parser, display)}
+            {"write", std::make_shared<FiddlerWrite>(fiddler, parser, display)},
+            {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)}
         }
     );
 
