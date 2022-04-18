@@ -12,6 +12,7 @@ class InstructionMap: public InstructionRegistry{
     public:
         InstructionMap(std::map<std::string, Instruction> commands);
         virtual Instruction getInstruction(std::string name) override;
+        virtual std::string help() override;
         void registerInstruction(std::string name, Instruction instr);
 };
 

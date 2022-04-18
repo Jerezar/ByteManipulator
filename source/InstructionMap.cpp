@@ -16,6 +16,17 @@ Instruction InstructionMap::getInstruction(std::string name) {
     }
 }
 
+std::string InstructionMap::help(){
+    std::string result;
+    for(std::map<std::string, Instruction>::iterator it = this->instructions.begin();
+        it != this->instructions.end();
+        it++){
+        result += it->first + "\t" + it->second->usage() + "\n";
+    }
+    
+    return result;
+}
+
 void InstructionMap::registerInstruction(std::string name, Instruction instr){
     this->instructions[name] = instr;
 }

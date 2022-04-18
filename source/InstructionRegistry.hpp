@@ -7,6 +7,7 @@
 class InstructionRegistry{
     public:
         virtual Instruction getInstruction(std::string name) = 0;
+        virtual std::string help() = 0;
 };
 
 using InstructionSet = std::shared_ptr<InstructionRegistry>;
