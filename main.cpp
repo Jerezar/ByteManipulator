@@ -21,6 +21,7 @@
 #include "FiddlerCommands/FiddlerSubtraction.hpp"
 #include "FiddlerCommands/FiddlerMultiplication.hpp"
 #include "FiddlerCommands/FiddlerDivision.hpp"
+#include "FiddlerCommands/FiddlerAnd.hpp"
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
@@ -39,7 +40,8 @@ int main(int argc, char* argv[]){
             {"add", std::make_shared<FiddlerAddition>(fiddler, parser, display)},
             {"sub", std::make_shared<FiddlerSubtraction>(fiddler, parser, display)},
             {"mul", std::make_shared<FiddlerMultiplication>(fiddler, parser, display)},
-            {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)}
+            {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)},
+            {"and", std::make_shared<FiddlerAnd>(fiddler, parser, display)}
         }
     );
 
