@@ -30,6 +30,7 @@
 #include "FiddlerCommands/FiddlerNegate.hpp"
 #include "FiddlerCommands/FiddlerLeftShift.hpp"
 #include "FiddlerCommands/FiddlerRightShift.hpp"
+#include "FiddlerCommands/FiddlerIncrement.hpp"
 
 #include "FiddlerCommands/FiddlerWrite.hpp"
 #include "FiddlerCommands/FiddlerSet.hpp"
@@ -60,7 +61,8 @@ int main(int argc, char* argv[]){
             {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)},
             {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)},
             {"rshift", std::make_shared<FiddlerRightShift>(fiddler, display)},
-            {"neg", std::make_shared<FiddlerNegate>(fiddler, display)}
+            {"neg", std::make_shared<FiddlerNegate>(fiddler, display)},
+            {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)}
         }
     );
 
