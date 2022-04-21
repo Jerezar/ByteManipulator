@@ -27,6 +27,8 @@
 #include "FiddlerCommands/FiddlerXor.hpp"
 #include "FiddlerCommands/FiddlerXnor.hpp"
 
+#include "FiddlerCommands/FiddlerLeftShift.hpp"
+
 #include "FiddlerCommands/FiddlerWrite.hpp"
 #include "FiddlerCommands/FiddlerSet.hpp"
 
@@ -53,7 +55,8 @@ int main(int argc, char* argv[]){
             {"xor", std::make_shared<FiddlerXor>(fiddler, parser, display)},
             {"xnor", std::make_shared<FiddlerXnor>(fiddler, parser, display)},
             {"write", std::make_shared<FiddlerWrite>(fiddler, parser, display)},
-            {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)}
+            {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)},
+            {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)}
         }
     );
 
