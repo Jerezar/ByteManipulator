@@ -18,7 +18,12 @@ file(GLOB_RECURSE SOURCES ${SOURCE_FOLDER}/*.cpp)
 
 include_directories(${SOURCE_FOLDER})
 
-add_executable(ByteManipulator main.cpp ${SOURCES})
+set(EXTERNAL_FOLDER eternal)
+file(GLOB_RECURSE EXTERNALS ${EXTERNAL_FOLDER}/*.cpp)
+
+include_directories(${EXTERNAL_FOLDER})
+
+add_executable(ByteManipulator main.cpp ${SOURCES} ${EXTERNALS})
 
 target_compile_options(ByteManipulator PUBLIC -Wall -Wextra -Wpedantic -O0 -std=c++17)
 
