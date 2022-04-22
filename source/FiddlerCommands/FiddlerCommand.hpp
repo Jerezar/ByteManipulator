@@ -6,7 +6,7 @@
 
 #include "MockFiddlerView.hpp"
 
-class FiddlerCommand: public InstructionWrapper{
+class FiddlerCommand: virtual public InstructionWrapper{
     protected:
         Fiddler target;
         Mfd_View view;
