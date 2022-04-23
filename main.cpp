@@ -36,6 +36,8 @@
 #include "FiddlerCommands/FiddlerWrite.hpp"
 #include "FiddlerCommands/FiddlerSet.hpp"
 
+#include "FiddlerCommands/FiddlerMemory/FiddlerMemorySave.hpp"
+
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
 
@@ -46,6 +48,8 @@ int main(int argc, char* argv[]){
     ValueParser parser = std::make_shared<StringNumberConverter>();
     
     Mfd_View display = std::make_shared<FiddlerFullView>();
+    
+    std::shared_ptr<TypedMemory> mem = std::make_shared<TypedMemory>(0);
 
 
     std::map<std::string, Instruction> commandMap(
@@ -64,7 +68,8 @@ int main(int argc, char* argv[]){
             {"rshift", std::make_shared<FiddlerRightShift>(fiddler, display)},
             {"neg", std::make_shared<FiddlerNegate>(fiddler, display)},
             {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)},
-            {"dec", std::make_shared<FiddlerDecrement>(fiddler, display)}
+            {"dec", std::make_shared<FiddlerDecrement>(fiddler, display)},
+            {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)}
         }
     );
 
