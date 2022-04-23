@@ -37,6 +37,7 @@
 #include "FiddlerCommands/FiddlerSet.hpp"
 
 #include "FiddlerCommands/FiddlerMemory/FiddlerMemorySave.hpp"
+#include "FiddlerCommands/FiddlerMemory/FiddlerMemoryLoad.hpp"
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
@@ -69,7 +70,8 @@ int main(int argc, char* argv[]){
             {"neg", std::make_shared<FiddlerNegate>(fiddler, display)},
             {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)},
             {"dec", std::make_shared<FiddlerDecrement>(fiddler, display)},
-            {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)}
+            {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)},
+            {"load", std::make_shared<FiddlerMemoryLoad>(fiddler, display, parser, mem)}
         }
     );
 
