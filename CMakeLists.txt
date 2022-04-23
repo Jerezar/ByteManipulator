@@ -18,7 +18,7 @@ file(GLOB_RECURSE SOURCES ${SOURCE_FOLDER}/*.cpp)
 
 include_directories(${SOURCE_FOLDER})
 
-set(EXTERNAL_FOLDER eternal)
+set(EXTERNAL_FOLDER external)
 file(GLOB_RECURSE EXTERNALS ${EXTERNAL_FOLDER}/*.cpp)
 
 include_directories(${EXTERNAL_FOLDER})

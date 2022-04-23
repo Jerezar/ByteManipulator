@@ -2,7 +2,7 @@
 #define MEMORYCOMMAND_HPP
 
 #include "InstructionWrapper.hpp"
-#include "TypedMemory.hpp"
+#include "typedMemory.hpp"
 #include <memory>
 
 
