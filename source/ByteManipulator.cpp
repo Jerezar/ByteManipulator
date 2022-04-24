@@ -13,6 +13,8 @@ ByteManipulator::ByteManipulator(InstructionSet cS, InputOutputHandler _io){
 }
 
 void ByteManipulator::loop(){
+    io->print("help\tShow commands");
+    io->print("quit\tEnd program");
     while (true){
         std::string input = io->read("Input: ");
         
