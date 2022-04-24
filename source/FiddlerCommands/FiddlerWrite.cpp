@@ -21,5 +21,5 @@ std::string FiddlerWrite::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerWrite::usage(){
-    return std::string("write <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

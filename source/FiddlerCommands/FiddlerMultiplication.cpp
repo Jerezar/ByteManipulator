@@ -23,5 +23,5 @@ std::string FiddlerMultiplication::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerMultiplication::usage(){
-    return std::string("mul <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

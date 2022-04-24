@@ -23,5 +23,5 @@ std::string FiddlerAddition::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerAddition::usage(){
-    return std::string("add <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

@@ -23,5 +23,5 @@ std::string FiddlerXnor::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerXnor::usage(){
-    return std::string("xor <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

@@ -28,5 +28,5 @@ std::string FiddlerDivision::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerDivision::usage(){
-    return std::string("div <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

@@ -21,5 +21,5 @@ std::string FiddlerSet::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerSet::usage(){
-    return std::string("set <index>");
+    return std::string("<index>");
 }

@@ -23,5 +23,5 @@ std::string FiddlerSubtraction::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerSubtraction::usage(){
-    return std::string("sub <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

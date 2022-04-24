@@ -23,5 +23,5 @@ std::string FiddlerOr::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerOr::usage(){
-    return std::string("or <unsigned operand>");
+    return std::string("<unsigned operand>");
 }

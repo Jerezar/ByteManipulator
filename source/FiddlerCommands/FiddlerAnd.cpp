@@ -23,5 +23,5 @@ std::string FiddlerAnd::execute(std::vector<std::string> args) {
 }
 
 std::string FiddlerAnd::usage(){
-    return std::string("and <unsigned operand>");
+    return std::string("<unsigned operand>");
 }
