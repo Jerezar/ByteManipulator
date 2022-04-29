@@ -1,15 +1,15 @@
-#ifndef BYTEMANIPULATOR_HPP
-#define BYTEMANIPULATOR_HPP
+#ifndef CONTROLELEMENT_HPP
+#define CONTROLELEMENT_HPP
 
 #include"InputOutputFacility.hpp"
 #include "InstructionRegistry.hpp"
 
-class ByteManipulator{
+class ControlElement{
     private:
         InputOutputHandler io;
         InstructionSet commandSet;
     public:
-        ByteManipulator(InstructionSet cS, InputOutputHandler _io);
+        ControlElement(InstructionSet cS, InputOutputHandler _io);
         void loop();
 };
 

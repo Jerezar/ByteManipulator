@@ -1,4 +1,4 @@
-#include "ByteManipulator.hpp"
+#include "ControlElement.hpp"
 
 #include <string>
 #include "string_utils.hpp"
@@ -7,12 +7,12 @@
 
 #include "InstructionWrapper.hpp"
 
-ByteManipulator::ByteManipulator(InstructionSet cS, InputOutputHandler _io){
+ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io){
     commandSet = cS;
     io = _io;
 }
 
-void ByteManipulator::loop(){
+void ControlElement::loop(){
     io->print("help\tShow commands");
     io->print("quit\tEnd program");
     while (true){

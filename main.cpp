@@ -1,4 +1,4 @@
-#include "ByteManipulator.hpp"
+#include "ControlElement.hpp"
 
 #include <memory>
 
@@ -17,6 +17,7 @@
 
 #include "NumberStringParser.hpp"
 #include "StringNumberConverter.hpp"
+
 #include "FiddlerCommands/FiddlerAddition.hpp"
 #include "FiddlerCommands/FiddlerSubtraction.hpp"
 #include "FiddlerCommands/FiddlerMultiplication.hpp"
@@ -79,7 +80,7 @@ int main(int argc, char* argv[]){
     
     InputOutputHandler io = std::make_shared<StandardStreamHandler>();
     
-    ByteManipulator b(commands, io);
+    ControlElement b(commands, io);
     
     b.loop();
     
