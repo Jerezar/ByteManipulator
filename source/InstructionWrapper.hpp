@@ -7,7 +7,7 @@
 class InstructionWrapper{
     public:
         virtual std::string execute(std::vector<std::string> args) = 0;
-        virtual std::string usage() = 0;
+        virtual std::string usage(){ return std::string("unspecified");};
 };
 
 using Instruction = std::shared_ptr<InstructionWrapper>;
