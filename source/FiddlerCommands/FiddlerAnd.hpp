@@ -1,12 +1,12 @@
 #ifndef FIDDLERAND_HPP
 #define FIDLLERAND_HPP
 
-#include "FiddlerMath.hpp"
+#include "FiddlerNumericInput.hpp"
 
 
-class FiddlerAnd: public FiddlerMath{
+class FiddlerAnd: public FiddlerNumericInput{
     public:
-        FiddlerAnd(Fiddler _target, ValueParser _parser, Mfd_View _view): FiddlerMath(_target, _view, _parser){};
+        FiddlerAnd(Fiddler _target, ValueParser _parser, Mfd_View _view): FiddlerNumericInput(_target, _view, _parser){};
         virtual std::string execute(std::vector<std::string> args) override;
         virtual std::string usage() override;
 };
