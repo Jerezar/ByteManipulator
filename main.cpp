@@ -41,6 +41,7 @@
 
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
+#include "ScriptReader.hpp"
 
 int main(int argc, char* argv[]){
 
@@ -77,7 +78,8 @@ int main(int argc, char* argv[]){
 
     InstructionSet commands = std::make_shared<InstructionMap>(commandMap);
     
-    InputOutputHandler io = std::make_shared<StandardStreamHandler>();
+    //InputOutputHandler io = std::make_shared<StandardStreamHandler>();
+    InputOutputHandler io = std::make_shared<ScriptReader>("./testScript.txt");
     
     ByteManipulator b(commands, io);
     
