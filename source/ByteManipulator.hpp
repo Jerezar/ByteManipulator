@@ -11,6 +11,9 @@ class ByteManipulator{
     public:
         ByteManipulator(InstructionSet cS, InputOutputHandler _io);
         void loop();
+        
+        static const std::string quit;
+        static const std::string help;
 };
 
 #endif

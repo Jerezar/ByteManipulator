@@ -7,22 +7,25 @@
 
 #include "InstructionWrapper.hpp"
 
+const std::string ByteManipulator::quit = ("quit");
+const std::string ByteManipulator::help = ("help");
+
 ByteManipulator::ByteManipulator(InstructionSet cS, InputOutputHandler _io){
     commandSet = cS;
     io = _io;
 }
 
 void ByteManipulator::loop(){
-    io->print("help\tShow commands");
-    io->print("quit\tEnd program");
+    io->print(ByteManipulator::help + "\tShow commands");
+    io->print(ByteManipulator::quit + "\tEnd program");
     while (true){
         std::string input = io->read("Input: ");
         
-        if(input == "quit") {
+        if(input == ByteManipulator::quit) {
             return;
-        } else if(input == "help"){
-            io->print("help\tShow commands");
-            io->print("quit\tEnd program");
+        } else if(input == ByteManipulator::help){
+            io->print(ByteManipulator::help + "\tShow commands");
+            io->print(ByteManipulator::quit + "\tEnd program");
             io->print(commandSet->help());
         } else {
             
