@@ -1,7 +1,7 @@
 #include "FiddlerLeftShift.hpp"
 
 std::string FiddlerLeftShift::execute(std::vector<std::string> args){
-    
+    (void) args;
     target->carry = (target->byte & (1 << 7));
 
     target->byte = target->byte << 1;

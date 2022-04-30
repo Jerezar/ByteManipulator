@@ -1,7 +1,7 @@
 #include "FiddlerIncrement.hpp"
 
 std::string FiddlerIncrement::execute(std::vector<std::string> args){
-
+    (void) args;
     ++(target->byte);
     
     target->zero = (target->byte == 0);
