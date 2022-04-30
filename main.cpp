@@ -18,15 +18,9 @@
 #include "NumberStringParser.hpp"
 #include "StringNumberConverter.hpp"
 
-#include "FiddlerCommands/FiddlerAddition.hpp"
-#include "FiddlerCommands/FiddlerSubtraction.hpp"
-#include "FiddlerCommands/FiddlerMultiplication.hpp"
-#include "FiddlerCommands/FiddlerDivision.hpp"
+#include "FiddlerCommands/FiddlerMath.hpp"
 
-#include "FiddlerCommands/FiddlerAnd.hpp"
-#include "FiddlerCommands/FiddlerOr.hpp"
-#include "FiddlerCommands/FiddlerXor.hpp"
-#include "FiddlerCommands/FiddlerXnor.hpp"
+#include "FiddlerCommands/FiddlerLogic.hpp"
 
 #include "FiddlerCommands/FiddlerNegate.hpp"
 #include "FiddlerCommands/FiddlerLeftShift.hpp"
