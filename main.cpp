@@ -11,7 +11,7 @@
 #include "MockFiddler.hpp"
 
 #include "MockFiddlerView.hpp"
-#include "FiddlerFullView.hpp"
+#include "FiddlerFlagView.hpp"
 
 #include "InstructionWrapper.hpp"
 
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
 
     ValueParser parser = std::make_shared<StringNumberConverter>();
     
-    Mfd_View display = std::make_shared<FiddlerFullView>();
+    Mfd_View display = std::make_shared<FiddlerFlagView>();
     
     std::shared_ptr<TypedMemory> mem = std::make_shared<TypedMemory>(0);
 
