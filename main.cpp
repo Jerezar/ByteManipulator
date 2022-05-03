@@ -11,6 +11,7 @@
 #include "MockFiddler.hpp"
 
 #include "MockFiddlerView.hpp"
+#include "FiddlerViewModes.hpp"
 #include "FiddlerFlagView.hpp"
 #include "FiddlerInterpretationView.hpp"
 
@@ -49,7 +50,13 @@ int main(int argc, char* argv[]){
 
     ValueParser parser = std::make_shared<StringNumberConverter>();
     
-    Mfd_View display = std::make_shared<FiddlerInterpretationView>();
+    std::map<std::string, Mfd_View> views(
+        {
+            {"interpretation", std::make_shared<FiddlerInterpretationView>()},
+            {"flags", std::make_shared<FiddlerFlagView>()}
+        }
+    );
+    std::shared_ptr<FiddlerViewModes> display = std::make_shared<FiddlerViewModes>(views);
     
     std::shared_ptr<TypedMemory> mem = std::make_shared<TypedMemory>(0);
 
