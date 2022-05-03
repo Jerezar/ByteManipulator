@@ -11,7 +11,9 @@
 #include "MockFiddler.hpp"
 
 #include "MockFiddlerView.hpp"
-#include "FiddlerFullView.hpp"
+#include "FiddlerViewModes.hpp"
+#include "FiddlerFlagView.hpp"
+#include "FiddlerInterpretationView.hpp"
 
 #include "InstructionWrapper.hpp"
 
@@ -31,6 +33,8 @@
 #include "FiddlerCommands/FiddlerWrite.hpp"
 #include "FiddlerCommands/FiddlerSet.hpp"
 
+#include "FiddlerCommands/FiddlerChangeView.hpp"
+
 #include "FiddlerCommands/FiddlerMemory/FiddlerMemorySave.hpp"
 #include "FiddlerCommands/FiddlerMemory/FiddlerMemoryLoad.hpp"
 
@@ -43,7 +47,13 @@ int main(int argc, char* argv[]){
 
     ValueParser parser = std::make_shared<StringNumberConverter>();
     
-    Mfd_View display = std::make_shared<FiddlerFullView>();
+    std::map<std::string, Mfd_View> views(
+        {
+            {"interpret", std::make_shared<FiddlerInterpretationView>()},
+            {"flags", std::make_shared<FiddlerFlagView>()}
+        }
+    );
+    std::shared_ptr<FiddlerViewModes> display = std::make_shared<FiddlerViewModes>(views);
     
     std::shared_ptr<TypedMemory> mem = std::make_shared<TypedMemory>(0);
 
@@ -66,7 +76,8 @@ int main(int argc, char* argv[]){
             {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)},
             {"dec", std::make_shared<FiddlerDecrement>(fiddler, display)},
             {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)},
-            {"load", std::make_shared<FiddlerMemoryLoad>(fiddler, display, parser, mem)}
+            {"load", std::make_shared<FiddlerMemoryLoad>(fiddler, display, parser, mem)},
+            {"views", std::make_shared<FiddlerChangeView>(display)}
         }
     );
 
