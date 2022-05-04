@@ -23,7 +23,7 @@ std::string FiddlerChangeView::execute(std::vector<std::string> args){
                 throw std::exception();
                 return "";
             } else {
-                return "Changed view to " + args.at(1) "\n";
+                return "Changed view to " + args.at(1) + "\n";
             }
         }
     }
