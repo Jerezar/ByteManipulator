@@ -44,6 +44,22 @@
 #include "ScriptReader.hpp"
 
 int main(int argc, char* argv[]){
+    
+    std::vector< std::string > arg (argv, argv + argc);
+    
+    std::string scriptPath;
+    bool runScript = false;
+    
+    for( std::vector< std::string >::iterator iter = arg.begin(); iter < arg.end(); iter++){
+        std::cout << *iter << std::endl;
+        if( *iter == "-s"){
+            ++iter;
+            if(iter < arg.end()){
+                runScript = true;
+                scriptPath = *iter;
+            }
+        }
+    }
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 
@@ -78,8 +94,13 @@ int main(int argc, char* argv[]){
 
     InstructionSet commands = std::make_shared<InstructionMap>(commandMap);
     
-    //InputOutputHandler io = std::make_shared<StandardStreamHandler>();
-    InputOutputHandler io = std::make_shared<ScriptReader>("./testScript.txt");
+    InputOutputHandler io;
+    
+    if(runScript){
+        io = std::make_shared<ScriptReader>(scriptPath);
+    } else {
+        io = std::make_shared<StandardStreamHandler>(); 
+    }
     
     ByteManipulator b(commands, io);
     
