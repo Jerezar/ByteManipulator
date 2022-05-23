@@ -28,5 +28,9 @@ std::string InstructionMap::help(){
 }
 
 void InstructionMap::registerInstruction(std::string name, Instruction instr){
-    this->instructions[name] = instr;
+    this->registerInstruction( { {name, instr} } );
+}
+
+void InstructionMap::registerInstruction(std::map<std::string, Instruction> commands){
+    this->instructions.merge(commands);
 }
