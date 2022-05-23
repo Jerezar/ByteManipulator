@@ -42,6 +42,7 @@
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
 #include "ScriptReader.hpp"
+#include "RunScript.hpp"
 
 int main(int argc, char* argv[]){
     
@@ -92,7 +93,10 @@ int main(int argc, char* argv[]){
         }
     );
 
-    InstructionSet commands = std::make_shared<InstructionMap>(commandMap);
+    std::shared_ptr<InstructionMap> commands = std::make_shared<InstructionMap>(commandMap);
+    
+    commands->registerInstruction(
+            "run", std::make_shared<RunScript>(commands));
     
     InputOutputHandler io;
     
