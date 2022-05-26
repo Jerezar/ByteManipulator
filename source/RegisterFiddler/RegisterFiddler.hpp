@@ -1,6 +1,6 @@
 #ifndef REGISTERFIDDLER_HPP
 #define REGISTERFIDDLER_HPP
-namespace RegisterFiddler{
+namespace register_fiddler{
     class RegisterFiddler {
         
     };
