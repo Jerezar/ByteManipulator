@@ -21,6 +21,7 @@
 #include "StringNumberConverter.hpp"
 
 #include "FiddlerCommands/FiddlerMath.hpp"
+#include "RegisterFiddler/Commands/MathCommands.hpp"
 
 #include "FiddlerCommands/FiddlerLogic.hpp"
 
@@ -60,7 +61,7 @@ int main(int argc, char* argv[]){
 
     std::map<std::string, Instruction> commandMap(
         {
-            {"add", std::make_shared<FiddlerAddition>(fiddler, parser, display)},
+            {"add", std::make_shared<register_fiddler::Addition>()},
             {"sub", std::make_shared<FiddlerSubtraction>(fiddler, parser, display)},
             {"mul", std::make_shared<FiddlerMultiplication>(fiddler, parser, display)},
             {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)},
