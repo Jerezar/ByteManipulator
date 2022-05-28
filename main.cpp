@@ -42,7 +42,11 @@
 #include "InputOutputFacility.hpp"
 #include "StandardStreamHandler.hpp"
 
+#include "RegisterFiddler/RegisterFiddler.hpp"
+
 int main(int argc, char* argv[]){
+
+    register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >();
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 
@@ -61,7 +65,7 @@ int main(int argc, char* argv[]){
 
     std::map<std::string, Instruction> commandMap(
         {
-            {"add", std::make_shared<register_fiddler::Addition>()},
+            {"add", std::make_shared<register_fiddler::Addition>(regFid, parser)},
             {"sub", std::make_shared<FiddlerSubtraction>(fiddler, parser, display)},
             {"mul", std::make_shared<FiddlerMultiplication>(fiddler, parser, display)},
             {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)},
