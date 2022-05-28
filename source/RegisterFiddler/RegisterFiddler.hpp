@@ -5,7 +5,6 @@
 
 #include <string>
 #include "FiddlerRegisterBank.hpp"
-#include "FiddlerFlagRegister.hpp"
 
 namespace register_fiddler{
     class RegisterFiddler {
@@ -14,7 +13,9 @@ namespace register_fiddler{
             int remainder;
             RegisterBank registers;
         public:
-            RegisterFiddler(){};
+            RegisterFiddler(RegisterBank _registers){
+                registers = _registers;
+            };
             
             static const uint8_t carryFlag;
             static const uint8_t zeroFlag;
