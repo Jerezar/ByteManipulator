@@ -4,15 +4,12 @@
 #include "FiddlerCommand.hpp"
 
 
-#include "NumberStringParser.hpp"
+#include "NumericInputCommand.hpp"
 
-class FiddlerNumericInput: public FiddlerCommand{
-    protected:
-        ValueParser parser;
+class FiddlerNumericInput: public FiddlerCommand, public NumericInputCommand{
+
     public:
-        FiddlerNumericInput(Fiddler _target, Mfd_View _view, ValueParser _parser): FiddlerCommand(_target, _view){
-            parser = _parser;
-        }
+        FiddlerNumericInput(Fiddler _target, Mfd_View _view, ValueParser _parser): FiddlerCommand(_target, _view), NumericInputCommand(_parser){}
 };
 
 #endif
