@@ -6,21 +6,13 @@
 
 int StringNumberConverter::getValueFromString(std::string string_rep){
     
-    std::regex bin_pat("0[bB]([01]+)");
-    
-    std::regex hex_pat("0[xX]([0-9a-fA-F]+)");
-    
-    std::regex oct_pat("0[oO]([0-7]+)");
-    
-    std::regex dec_pat("[0-9]+");
-    
-    if(std::regex_match(string_rep.begin(), string_rep.end(), bin_pat)){
+    if(this->isBinary(string_rep)){
         return StringNumberConverter::getBinaryFromString(string_rep);
-    } else if(std::regex_match(string_rep.begin(), string_rep.end(), hex_pat)){
+    } else if(isOctal(string_rep)){
         return StringNumberConverter::getHexFromString(string_rep);
-    } else if(std::regex_match(string_rep.begin(), string_rep.end(), oct_pat)){
+    } else if(isHex(string_rep)){
         return StringNumberConverter::getOctalFromString(string_rep);
-    } else if(std::regex_match(string_rep.begin(), string_rep.end(), dec_pat)){
+    } else if(isDecimal(string_rep)){
         return StringNumberConverter::getDecimalFromString(string_rep);
     } else {
         throw InvalidInputException();
@@ -99,4 +91,29 @@ uint8_t StringNumberConverter::getDecimalFromString(std::string string_rep){
     }
     
     return result;
+}
+
+bool StringNumberConverter::canParse(std::string string_rep){
+    return isBinary(string_rep) || isOctal(string_rep) || isDecimal(string_rep) || isHex(string_rep);
+}
+
+bool StringNumberConverter::isBinary(std::string string_rep){
+    std::regex bin_pat("0[bB]([01]+)");
+    return std::regex_match(string_rep.begin(), string_rep.end(), bin_pat);
+}
+
+bool StringNumberConverter::isOctal(std::string string_rep){
+    std::regex oct_pat("0[oO]([0-7]+)");
+    return std::regex_match(string_rep.begin(), string_rep.end(), oct_pat);
+}
+
+bool StringNumberConverter::isDecimal(std::string string_rep){
+    std::regex dec_pat("[0-9]+");
+    return std::regex_match(string_rep.begin(), string_rep.end(), dec_pat);
+    
+}
+
+bool StringNumberConverter::isHex(std::string string_rep){
+    std::regex hex_pat("0[xX]([0-9a-fA-F]+)");
+    return std::regex_match(string_rep.begin(), string_rep.end(), hex_pat);
 }
