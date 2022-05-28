@@ -37,6 +37,11 @@ namespace register_fiddler{
     }
     
     void RegisterFiddler::setFlags(uint8_t mask, bool value){
-    
+        
+        if(value){
+            flags |= mask;
+        } else {
+            flags &= ~mask;
+        }
     }
 }
