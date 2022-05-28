@@ -4,15 +4,29 @@
 #include <memory>
 
 #include <string>
+#include "FiddlerRegisterBank.hpp"
+#include "FiddlerFlagRegister.hpp"
 
 namespace register_fiddler{
     class RegisterFiddler {
-        
+        private:
+            uint8_t flags;
+            int remainder;
+            RegisterBank registers;
         public:
             RegisterFiddler(){};
+            
+            static const uint8_t carryFlag;
+            static const uint8_t zeroFlag;
+            static const uint8_t parityFlag;
+            
             uint8_t get(std::string source);
+            
             void add(std::string target, uint8_t value);
             void add(std::string target, std::string source);
+            
+            bool parity(std::string target);
+            void setFlags(uint8_t mask, bool value);
             
     };
     
