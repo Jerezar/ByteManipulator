@@ -43,10 +43,22 @@
 #include "StandardStreamHandler.hpp"
 
 #include "RegisterFiddler/RegisterFiddler.hpp"
+#include "RegisterFiddler/RegisterMap.hpp"
 
 int main(int argc, char* argv[]){
-
-    register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >();
+    
+    auto fidRegisters = std::make_shared< register_fiddler::RegisterMap >(
+        std::vector< std::string >(
+            {
+                "ra",
+                "rb",
+                "rc",
+                "re"
+            }
+        )
+    );
+    register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters
+    );
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 
