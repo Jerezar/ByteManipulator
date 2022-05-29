@@ -84,7 +84,7 @@ int main(int argc, char* argv[]){
     std::map<std::string, Instruction> commandMap(
         {
             {"add", std::make_shared<register_fiddler::Addition>(regFid, registerView, parser)},
-            {"sub", std::make_shared<FiddlerSubtraction>(fiddler, parser, display)},
+            {"sub", std::make_shared<register_fiddler::Subtraction>(regFid, registerView, parser)},
             {"mul", std::make_shared<FiddlerMultiplication>(fiddler, parser, display)},
             {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)},
             {"and", std::make_shared<FiddlerAnd>(fiddler, parser, display)},

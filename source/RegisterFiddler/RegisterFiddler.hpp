@@ -27,6 +27,9 @@ namespace register_fiddler{
             void add(std::string target, uint8_t value);
             void add(std::string target, std::string source);
             
+            void sub(std::string target, uint8_t value);
+            void sub(std::string target, std::string source);
+            
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);
             

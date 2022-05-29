@@ -23,6 +23,20 @@ namespace register_fiddler{
         this->add(target, registers->get(source));
     }
     
+    void RegisterFiddler::sub(std::string target, uint8_t value){
+        int result = registers->get(target) - value;
+        
+        registers->set(target, result);
+        
+        setFlags( carryFlag, (result > 255 || result < 0) );
+        setFlags( zeroFlag, (result == 0) );
+        setFlags( parityFlag, this->parity(target) );
+        remainder = 0;
+    }
+    void RegisterFiddler::sub(std::string target, std::string source){
+        this->add(target, registers->get(source));
+    }
+    
     bool RegisterFiddler::parity(std::string target){
         bool result = true;
         uint8_t value = get(target);
