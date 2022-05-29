@@ -21,7 +21,6 @@
 #include "StringNumberConverter.hpp"
 
 #include "FiddlerCommands/FiddlerMath.hpp"
-#include "RegisterFiddler/Commands/MathCommands.hpp"
 
 #include "FiddlerCommands/FiddlerLogic.hpp"
 
@@ -45,6 +44,10 @@
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
 
+#include "RegisterFiddler/ViewRegistersOnly.hpp"
+
+#include "RegisterFiddler/Commands/MathCommands.hpp"
+
 int main(int argc, char* argv[]){
     
     auto fidRegisters = std::make_shared< register_fiddler::RegisterMap >(
@@ -57,8 +60,11 @@ int main(int argc, char* argv[]){
             }
         )
     );
+    
     register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters
     );
+    
+    auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>();
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 
@@ -77,7 +83,7 @@ int main(int argc, char* argv[]){
 
     std::map<std::string, Instruction> commandMap(
         {
-            {"add", std::make_shared<register_fiddler::Addition>(regFid, parser)},
+            {"add", std::make_shared<register_fiddler::Addition>(regFid, registerView, parser)},
             {"sub", std::make_shared<FiddlerSubtraction>(fiddler, parser, display)},
             {"mul", std::make_shared<FiddlerMultiplication>(fiddler, parser, display)},
             {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)},

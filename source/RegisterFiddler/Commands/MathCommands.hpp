@@ -8,7 +8,7 @@ namespace register_fiddler{
 
     class Addition: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Addition(RegFiddler _fiddler, ValueParser _parser): RegFiddlerCommand(_fiddler), NumericInputCommand(_parser){};
+            Addition(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };

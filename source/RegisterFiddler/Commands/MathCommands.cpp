@@ -12,7 +12,7 @@ namespace register_fiddler{
             fiddler->add(target, value);
         }
         
-        return "\n";
+        return view->display();
     }
     
     std::string Addition::usage(){
