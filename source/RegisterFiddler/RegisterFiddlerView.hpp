@@ -10,6 +10,7 @@ namespace register_fiddler{
         protected:
             RegFiddler fiddler;
         public:
+            RegisterFiddlerView(RegFiddler _fiddler){ fiddler = _fiddler; };
             virtual std::string display() = 0;
     };
     

@@ -13,6 +13,7 @@ namespace register_fiddler{
             RegisterMap( std::vector< std::string > names , uint8_t value = 0);
             virtual uint8_t get(std::string source) override;
             virtual void set(std::string target, uint8_t value) override;
+            virtual std::vector<std::string> getNames() override;
     };
 }
 

@@ -21,6 +21,7 @@ namespace register_fiddler{
             static const uint8_t zeroFlag;
             static const uint8_t parityFlag;
             
+            RegisterBank getRegisters(){ return registers; };
             uint8_t get(std::string source);
             
             void add(std::string target, uint8_t value);

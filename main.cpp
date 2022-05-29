@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
     register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters
     );
     
-    auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>();
+    auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>(regFid);
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 

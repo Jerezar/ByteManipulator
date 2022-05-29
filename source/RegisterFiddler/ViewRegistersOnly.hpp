@@ -6,7 +6,7 @@
 namespace register_fiddler{
     class ViewRegistersOnly: public RegisterFiddlerView{
         public:
-            ViewRegistersOnly(){};
+            ViewRegistersOnly(RegFiddler _fiddler) : RegisterFiddlerView(_fiddler){};
             virtual std::string display() override;
     };
 }

@@ -15,4 +15,12 @@ namespace register_fiddler{
     void RegisterMap::set(std::string target, uint8_t value){
         values.at(target) = value;
     }
+    
+    std::vector<std::string> RegisterMap::getNames(){
+        std::vector< std::string > names;
+        for(std::map< std::string, uint8_t >::iterator iter = values.begin(); iter != values.end(); iter++){
+            names.push_back(iter->first);
+        }
+        return names;
+    };
 }
