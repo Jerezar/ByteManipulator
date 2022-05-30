@@ -47,6 +47,7 @@
 #include "RegisterFiddler/ViewRegistersOnly.hpp"
 
 #include "RegisterFiddler/Commands/MathCommands.hpp"
+#include "RegisterFiddler/Commands/LogicCommands.hpp"
 
 int main(int argc, char* argv[]){
     
@@ -87,10 +88,10 @@ int main(int argc, char* argv[]){
             {"sub", std::make_shared<register_fiddler::Subtraction>(regFid, registerView, parser)},
             {"mul", std::make_shared<register_fiddler::Multiplication>(regFid, registerView, parser)},
             {"div", std::make_shared<register_fiddler::Division>(regFid, registerView, parser)},
-            {"and", std::make_shared<FiddlerAnd>(fiddler, parser, display)},
-            {"or", std::make_shared<FiddlerOr>(fiddler, parser, display)},
-            {"xor", std::make_shared<FiddlerXor>(fiddler, parser, display)},
-            {"xnor", std::make_shared<FiddlerXnor>(fiddler, parser, display)},
+            {"and", std::make_shared<register_fiddler::And>(regFid, registerView, parser)},
+            {"or", std::make_shared<register_fiddler::Or>(regFid, registerView, parser)},
+            {"xor", std::make_shared<register_fiddler::Xor>(regFid, registerView, parser)},
+            {"xnor", std::make_shared<register_fiddler::Xnor>(regFid, registerView, parser)},
             {"write", std::make_shared<FiddlerWrite>(fiddler, parser, display)},
             {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)},
             {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)},

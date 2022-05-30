@@ -36,6 +36,18 @@ namespace register_fiddler{
             void div(std::string target, uint8_t value);
             void div(std::string target, std::string source);
             
+            void bit_and(std::string target, uint8_t value);
+            void bit_and(std::string target, std::string source);
+            
+            void bit_or(std::string target, uint8_t value);
+            void bit_or(std::string target, std::string source);
+            
+            void bit_xor(std::string target, uint8_t value);
+            void bit_xor(std::string target, std::string source);
+            
+            void bit_xnor(std::string target, uint8_t value);
+            void bit_xnor(std::string target, std::string source);
+            
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);
             

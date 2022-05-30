@@ -74,6 +74,66 @@ namespace register_fiddler{
     }
     
     
+    void RegisterFiddler::bit_and(std::string target, uint8_t value){
+        int result = registers->get(target) & value;
+        
+        registers->set(target, result);
+        
+        setFlags( carryFlag, false );
+        setFlags( zeroFlag, (result == 0) );
+        setFlags( parityFlag, this->parity(target) );
+        remainder = 0;
+    }
+    void RegisterFiddler::bit_and(std::string target, std::string source){
+        this->bit_and(target, registers->get(source));
+    }
+    
+    
+    void RegisterFiddler::bit_or(std::string target, uint8_t value){
+        int result = registers->get(target) | value;
+        
+        registers->set(target, result);
+        
+        setFlags( carryFlag, false );
+        setFlags( zeroFlag, (result == 0) );
+        setFlags( parityFlag, this->parity(target) );
+        remainder = 0;
+    }
+    void RegisterFiddler::bit_or(std::string target, std::string source){
+        this->bit_or(target, registers->get(source));
+    }
+    
+    
+    void RegisterFiddler::bit_xor(std::string target, uint8_t value){
+        int result = registers->get(target) ^ value;
+        
+        registers->set(target, result);
+        
+        setFlags( carryFlag, false );
+        setFlags( zeroFlag, (result == 0) );
+        setFlags( parityFlag, this->parity(target) );
+        remainder = 0;
+    }
+    void RegisterFiddler::bit_xor(std::string target, std::string source){
+        this->bit_xor(target, registers->get(source));
+    }
+    
+    
+    void RegisterFiddler::bit_xnor(std::string target, uint8_t value){
+        int result = registers->get(target) ^ value;
+        
+        registers->set(target, ~result);
+        
+        setFlags( carryFlag, false );
+        setFlags( zeroFlag, (result == 0) );
+        setFlags( parityFlag, this->parity(target) );
+        remainder = 0;
+    }
+    void RegisterFiddler::bit_xnor(std::string target, std::string source){
+        this->bit_xnor(target, registers->get(source));
+    }
+    
+    
     bool RegisterFiddler::parity(std::string target){
         bool result = true;
         uint8_t value = get(target);
