@@ -33,6 +33,9 @@ namespace register_fiddler{
             void mul(std::string target, uint8_t value);
             void mul(std::string target, std::string source);
             
+            void div(std::string target, uint8_t value);
+            void div(std::string target, std::string source);
+            
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);
             

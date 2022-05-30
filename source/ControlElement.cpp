@@ -33,8 +33,8 @@ void ControlElement::loop(){
                 
                 try{
                     output = command->execute(args);
-                } catch (std::exception e){
-                    io->print(args[0] + command->usage());
+                } catch (std::exception const& e){
+                    io->print(args[0] + " " + command->usage() + "\n" + e.what());
                 }
                 
                 io->print(output);

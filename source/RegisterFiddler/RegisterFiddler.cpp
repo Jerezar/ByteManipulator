@@ -1,5 +1,7 @@
 #include "RegisterFiddler.hpp"
 
+#include <exception>
+
 namespace register_fiddler{
     const uint8_t RegisterFiddler::carryFlag = 1;
     const uint8_t RegisterFiddler::zeroFlag = 1 << 1;
@@ -50,7 +52,25 @@ namespace register_fiddler{
         remainder = result - registers->get(target);
     }
     void RegisterFiddler::mul(std::string target, std::string source){
-        this->sub(target, registers->get(source));
+        this->mul(target, registers->get(source));
+    }
+    
+    
+    void RegisterFiddler::div(std::string target, uint8_t value){
+        if(value == 0){
+            throw std::logic_error("Division by zero\n");
+        }
+        int targetValue = registers->get(target);
+        int result = targetValue / value;
+        
+        registers->set(target, result);
+        
+        setFlags( zeroFlag, (result == 0) );
+        setFlags( parityFlag, this->parity(target) );
+        remainder = targetValue % value;
+    }
+    void RegisterFiddler::div(std::string target, std::string source){
+        this->div(target, registers->get(source));
     }
     
     

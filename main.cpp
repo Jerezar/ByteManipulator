@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
             {"add", std::make_shared<register_fiddler::Addition>(regFid, registerView, parser)},
             {"sub", std::make_shared<register_fiddler::Subtraction>(regFid, registerView, parser)},
             {"mul", std::make_shared<register_fiddler::Multiplication>(regFid, registerView, parser)},
-            {"div", std::make_shared<FiddlerDivision>(fiddler, parser, display)},
+            {"div", std::make_shared<register_fiddler::Division>(regFid, registerView, parser)},
             {"and", std::make_shared<FiddlerAnd>(fiddler, parser, display)},
             {"or", std::make_shared<FiddlerOr>(fiddler, parser, display)},
             {"xor", std::make_shared<FiddlerXor>(fiddler, parser, display)},
