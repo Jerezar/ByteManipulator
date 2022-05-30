@@ -9,9 +9,9 @@ int StringNumberConverter::getValueFromString(std::string string_rep){
     if(this->isBinary(string_rep)){
         return StringNumberConverter::getBinaryFromString(string_rep);
     } else if(isOctal(string_rep)){
-        return StringNumberConverter::getHexFromString(string_rep);
-    } else if(isHex(string_rep)){
         return StringNumberConverter::getOctalFromString(string_rep);
+    } else if(isHex(string_rep)){
+        return StringNumberConverter::getHexFromString(string_rep);
     } else if(isDecimal(string_rep)){
         return StringNumberConverter::getDecimalFromString(string_rep);
     } else {
