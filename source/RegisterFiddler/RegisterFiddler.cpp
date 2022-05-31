@@ -11,6 +11,14 @@ namespace register_fiddler{
         return registers->get(source);
     }
     
+    void RegisterFiddler::move(std::string target, uint8_t value){
+        registers->set(target, value);
+    }
+    void RegisterFiddler::move(std::string target, std::string source){
+        this->move(target, registers->get(source));
+    }
+    
+    
     void RegisterFiddler::add(std::string target, uint8_t value){
         int result = registers->get(target) + value;
         

@@ -24,6 +24,9 @@ namespace register_fiddler{
             RegisterBank getRegisters(){ return registers; };
             uint8_t get(std::string source);
             
+            void move(std::string target, uint8_t value);
+            void move(std::string target, std::string source);
+            
             void add(std::string target, uint8_t value);
             void add(std::string target, std::string source);
             

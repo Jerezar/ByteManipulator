@@ -48,6 +48,8 @@
 
 #include "RegisterFiddler/Commands/MathCommands.hpp"
 #include "RegisterFiddler/Commands/LogicCommands.hpp"
+#include "RegisterFiddler/Commands/MiscCommands.hpp"
+
 
 int main(int argc, char* argv[]){
     
@@ -92,7 +94,7 @@ int main(int argc, char* argv[]){
             {"or", std::make_shared<register_fiddler::Or>(regFid, registerView, parser)},
             {"xor", std::make_shared<register_fiddler::Xor>(regFid, registerView, parser)},
             {"xnor", std::make_shared<register_fiddler::Xnor>(regFid, registerView, parser)},
-            {"write", std::make_shared<FiddlerWrite>(fiddler, parser, display)},
+            {"move", std::make_shared<register_fiddler::Move>(regFid, registerView, parser)},
             {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)},
             {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)},
             {"rshift", std::make_shared<FiddlerRightShift>(fiddler, display)},
