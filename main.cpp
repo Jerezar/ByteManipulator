@@ -98,7 +98,7 @@ int main(int argc, char* argv[]){
             {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)},
             {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)},
             {"rshift", std::make_shared<FiddlerRightShift>(fiddler, display)},
-            {"neg", std::make_shared<FiddlerNegate>(fiddler, display)},
+            {"neg", std::make_shared<register_fiddler::Negate>(regFid, registerView, parser)},
             {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)},
             {"dec", std::make_shared<FiddlerDecrement>(fiddler, display)},
             {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)},

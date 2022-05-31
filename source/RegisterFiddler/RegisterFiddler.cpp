@@ -142,6 +142,11 @@ namespace register_fiddler{
     }
     
     
+    void RegisterFiddler::negate(std::string target){
+        registers->set(target, ~(registers->get(target)) );
+    }
+    
+    
     bool RegisterFiddler::parity(std::string target){
         bool result = true;
         uint8_t value = get(target);
