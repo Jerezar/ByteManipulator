@@ -22,5 +22,5 @@ namespace register_fiddler{
             names.push_back(iter->first);
         }
         return names;
-    };
+    }
 }

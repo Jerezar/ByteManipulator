@@ -143,7 +143,7 @@ namespace register_fiddler{
     
     
     void RegisterFiddler::negate(std::string target){
-        registers->set(target, ~(registers->get(target)) );
+        registers->negate(target);
     }
     
     
