@@ -96,7 +96,7 @@ int main(int argc, char* argv[]){
             {"xnor", std::make_shared<register_fiddler::Xnor>(regFid, registerView, parser)},
             {"move", std::make_shared<register_fiddler::Move>(regFid, registerView, parser)},
             {"neg", std::make_shared<register_fiddler::Negate>(regFid, registerView, parser)},
-            {"set", std::make_shared<FiddlerSet>(fiddler, parser, display)},
+            {"set", std::make_shared<register_fiddler::ToggleBit>(regFid, registerView, parser)},
             {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)},
             {"rshift", std::make_shared<FiddlerRightShift>(fiddler, display)},
             {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)},

@@ -20,5 +20,12 @@ namespace register_fiddler{
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
+    
+    class ToggleBit: public RegFiddlerCommand, public NumericInputCommand{
+        public:
+            ToggleBit(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
 }
 #endif

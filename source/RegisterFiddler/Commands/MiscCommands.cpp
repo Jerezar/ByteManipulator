@@ -41,4 +41,19 @@ namespace register_fiddler{
     std::string Negate::usage(){
         return std::string("<target> None/<value/source>");
     }
+    
+    
+    std::string ToggleBit::execute(std::vector<std::string> args){
+        std::string target = args.at(1);
+        
+        std::string value = args.at(2);
+        
+        fiddler->getRegisters()->toggleBit(target, parser->getValueFromString(value));
+        
+        return view->display();
+    }
+    
+    std::string ToggleBit::usage(){
+        return std::string("<target> <bit>");
+    }
 }
