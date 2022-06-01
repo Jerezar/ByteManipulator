@@ -14,6 +14,8 @@ namespace register_fiddler{
             virtual uint8_t get(std::string source) override;
             virtual void set(std::string target, uint8_t value) override;
             virtual std::vector<std::string> getNames() override;
+            virtual void negate(std::string target) override;
+            virtual void toggleBit(std::string target, unsigned int index) override;
     };
 }
 

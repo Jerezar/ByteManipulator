@@ -23,4 +23,11 @@ namespace register_fiddler{
         }
         return names;
     }
+    
+    void RegisterMap::negate(std::string target) {
+        set( target, ~(get(target)) );
+    }
+    void RegisterMap::toggleBit(std::string target, unsigned int index){
+        set( target, (get(target)) ^ (1 << index)) ;
+    }
 }
