@@ -146,6 +146,32 @@ namespace register_fiddler{
         registers->negate(target);
     }
     
+    void RegisterFiddler::shift(std::string target, bool left, unsigned int amount){
+        for(int i = 0; i < amount; i++){
+            uint8_t value = get(target);
+            
+            if(left){
+                setFlags( carryFlag, value & (1 << 8) );
+                value = value << 1;
+            } else {
+                setFlags( carryFlag, value & (1 << 0) );
+                value = value >> 1;
+            }
+            
+            registers->set(target, value);
+            
+            setFlags( zeroFlag, (value == 0) );
+            setFlags( parityFlag, this->parity(target) );
+        }
+    }
+    
+    void RegisterFiddler::count(std::string target, bool up){
+        if(up){
+            add(target, 1);
+        } else {
+            sub(target, 1);
+        }
+    }
     
     bool RegisterFiddler::parity(std::string target){
         bool result = true;

@@ -52,6 +52,8 @@ namespace register_fiddler{
             void bit_xnor(std::string target, std::string source);
             
             void negate(std::string target);
+            void shift(std::string target, bool left = true, unsigned int amount = 1);
+            void count(std::string target, bool up = true);
             
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);

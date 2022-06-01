@@ -27,5 +27,27 @@ namespace register_fiddler{
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
+    
+    
+    class Shift: public RegFiddlerCommand, public NumericInputCommand{
+        public:
+            static const std::string leftward;
+            static const std::string rightward;
+            
+            Shift(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
+    
+    
+    class Count: public RegFiddlerCommand, public NumericInputCommand{
+        public:
+            static const std::string upward;
+            static const std::string downward;
+            
+            Count(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
 }
 #endif

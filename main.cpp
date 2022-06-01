@@ -97,10 +97,8 @@ int main(int argc, char* argv[]){
             {"move", std::make_shared<register_fiddler::Move>(regFid, registerView, parser)},
             {"neg", std::make_shared<register_fiddler::Negate>(regFid, registerView, parser)},
             {"set", std::make_shared<register_fiddler::ToggleBit>(regFid, registerView, parser)},
-            {"lshift", std::make_shared<FiddlerLeftShift>(fiddler, display)},
-            {"rshift", std::make_shared<FiddlerRightShift>(fiddler, display)},
-            {"inc", std::make_shared<FiddlerIncrement>(fiddler, display)},
-            {"dec", std::make_shared<FiddlerDecrement>(fiddler, display)},
+            {"shift", std::make_shared<register_fiddler::Shift>(regFid, registerView, parser)},
+            {"count", std::make_shared<register_fiddler::Count>(regFid, registerView, parser)},
             {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)},
             {"load", std::make_shared<FiddlerMemoryLoad>(fiddler, display, parser, mem)},
             {"views", std::make_shared<FiddlerChangeView>(display)}
