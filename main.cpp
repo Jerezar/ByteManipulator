@@ -43,12 +43,14 @@
 
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
+#include "RegisterFiddler/TypedMemorySpace.hpp"
 
 #include "RegisterFiddler/ViewRegistersOnly.hpp"
 
 #include "RegisterFiddler/Commands/MathCommands.hpp"
 #include "RegisterFiddler/Commands/LogicCommands.hpp"
 #include "RegisterFiddler/Commands/MiscCommands.hpp"
+#include "RegisterFiddler/Commands/MemoryCommands.hpp"
 
 
 int main(int argc, char* argv[]){
@@ -64,7 +66,9 @@ int main(int argc, char* argv[]){
         )
     );
     
-    register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters
+    auto regFidMemory = std::make_shared<register_fiddler::TypedMemorySpace>(0);
+    
+    register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters, regFidMemory
     );
     
     auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>(regFid);
@@ -99,8 +103,8 @@ int main(int argc, char* argv[]){
             {"set", std::make_shared<register_fiddler::ToggleBit>(regFid, registerView, parser)},
             {"shift", std::make_shared<register_fiddler::Shift>(regFid, registerView, parser)},
             {"count", std::make_shared<register_fiddler::Count>(regFid, registerView, parser)},
-            {"save", std::make_shared<FiddlerMemorySave>(fiddler, display, parser, mem)},
-            {"load", std::make_shared<FiddlerMemoryLoad>(fiddler, display, parser, mem)},
+            {"save", std::make_shared<register_fiddler::Save>(regFid, registerView, parser)},
+            {"load", std::make_shared<register_fiddler::Load>(regFid, registerView, parser)},
             {"views", std::make_shared<FiddlerChangeView>(display)}
         }
     );

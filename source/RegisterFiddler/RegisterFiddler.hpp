@@ -5,6 +5,7 @@
 
 #include <string>
 #include "FiddlerRegisterBank.hpp"
+#include "MemorySpace.hpp"
 
 namespace register_fiddler{
     class RegisterFiddler {
@@ -12,9 +13,11 @@ namespace register_fiddler{
             uint8_t flags;
             int remainder;
             RegisterBank registers;
+            MemBlock mem;
         public:
-            RegisterFiddler(RegisterBank _registers){
+            RegisterFiddler(RegisterBank _registers, MemBlock _mem){
                 registers = _registers;
+                mem = _mem;
             };
             
             static const uint8_t carryFlag;
@@ -54,6 +57,9 @@ namespace register_fiddler{
             void negate(std::string target);
             void shift(std::string target, bool left = true, unsigned int amount = 1);
             void count(std::string target, bool up = true);
+            
+            void load(std::string target, unsigned int index);
+            void save(std::string source, unsigned int index);
             
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);

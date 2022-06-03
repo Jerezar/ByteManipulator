@@ -173,6 +173,16 @@ namespace register_fiddler{
         }
     }
     
+    
+    void RegisterFiddler::load(std::string target, unsigned int index){
+        registers->set(target, mem->get(index));
+    }
+    
+    void RegisterFiddler::save(std::string source, unsigned int index){
+        mem->set(index, registers->get(source));
+    }
+    
+    
     bool RegisterFiddler::parity(std::string target){
         bool result = true;
         uint8_t value = get(target);
