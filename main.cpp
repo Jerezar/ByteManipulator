@@ -46,6 +46,7 @@
 #include "RegisterFiddler/TypedMemorySpace.hpp"
 
 #include "RegisterFiddler/ViewRegistersOnly.hpp"
+#include "RegisterFiddler/ViewMemoryOnly.hpp"
 
 #include "RegisterFiddler/Commands/MathCommands.hpp"
 #include "RegisterFiddler/Commands/LogicCommands.hpp"
@@ -71,7 +72,8 @@ int main(int argc, char* argv[]){
     register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters, regFidMemory
     );
     
-    auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>(regFid);
+    //auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>(regFid);
+    auto registerView = std::make_shared<register_fiddler::ViewMemoryOnly>(regFid);
 
     Fiddler fiddler = std::make_shared<MockFiddler>();
 

@@ -25,6 +25,7 @@ namespace register_fiddler{
             static const uint8_t parityFlag;
             
             RegisterBank getRegisters(){ return registers; };
+            MemBlock getMem(){ return mem; };
             uint8_t get(std::string source);
             
             void move(std::string target, uint8_t value);

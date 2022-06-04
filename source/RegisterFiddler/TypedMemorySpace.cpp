@@ -19,4 +19,8 @@ namespace register_fiddler{
         }
         return mem.getChar(index);
     }
+    
+    unsigned int TypedMemorySpace::getSize(){
+       return TypedMemory::RAWMEMORYSIZE;
+    }
 }

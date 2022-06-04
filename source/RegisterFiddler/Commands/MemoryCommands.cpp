@@ -8,7 +8,11 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        fiddler->load(target, parser->getValueFromString(value));
+        if(parser->canParse(value)){
+            fiddler->load(target, parser->getValueFromString(value));
+        } else {
+            fiddler->load(target, fiddler->get(value));
+        }
         
         return view->display();
     }
@@ -23,7 +27,11 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        fiddler->save(target, parser->getValueFromString(value));
+        if(parser->canParse(value)){
+            fiddler->save(target, parser->getValueFromString(value));
+        } else {
+            fiddler->save(target, fiddler->get(value));
+        }
         
         return view->display();
     }
