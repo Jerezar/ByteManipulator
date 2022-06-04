@@ -8,7 +8,7 @@ namespace register_fiddler{
 
     class Addition: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Addition(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Addition(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -16,7 +16,7 @@ namespace register_fiddler{
     
     class Subtraction: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Subtraction(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Subtraction(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -24,7 +24,7 @@ namespace register_fiddler{
     
     class Multiplication: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Multiplication(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Multiplication(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -32,7 +32,7 @@ namespace register_fiddler{
     
     class Division: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Division(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Division(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };

@@ -8,7 +8,7 @@ namespace register_fiddler{
 
     class Move: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Move(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Move(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -16,14 +16,14 @@ namespace register_fiddler{
     
     class Negate: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Negate(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Negate(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
     
     class ToggleBit: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            ToggleBit(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            ToggleBit(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -34,7 +34,7 @@ namespace register_fiddler{
             static const std::string leftward;
             static const std::string rightward;
             
-            Shift(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Shift(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -45,7 +45,7 @@ namespace register_fiddler{
             static const std::string upward;
             static const std::string downward;
             
-            Count(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Count(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };

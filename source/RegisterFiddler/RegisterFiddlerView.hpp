@@ -2,16 +2,15 @@
 #define REGISTERFIDDLERVIEW_HPP
 
 #include <memory>
-#include <string>
+#include "GenericView.hpp"
 #include "RegisterFiddler/RegisterFiddler.hpp"
 
 namespace register_fiddler{
-    class RegisterFiddlerView{
+    class RegisterFiddlerView : public fw_byte_manip::GenericView{
         protected:
             RegFiddler fiddler;
         public:
             RegisterFiddlerView(RegFiddler _fiddler){ fiddler = _fiddler; };
-            virtual std::string display() = 0;
     };
     
     using RegFiddlerView = std::shared_ptr<RegisterFiddlerView>;

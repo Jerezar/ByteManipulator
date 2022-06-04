@@ -3,15 +3,15 @@
 
 #include "InstructionWrapper.hpp"
 #include "RegisterFiddler/RegisterFiddler.hpp"
-#include "RegisterFiddler/RegisterFiddlerView.hpp"
+#include "GenericView.hpp"
 
 namespace register_fiddler{
     class RegFiddlerCommand: virtual public InstructionWrapper{
         protected:
             RegFiddler fiddler;
-            RegFiddlerView view;
+            fw_byte_manip::View view;
         public:
-            RegFiddlerCommand( RegFiddler _fiddler, RegFiddlerView _view){ fiddler = _fiddler;
+            RegFiddlerCommand( RegFiddler _fiddler, fw_byte_manip::View _view){ fiddler = _fiddler;
             view = _view;};
     };
 }

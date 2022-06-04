@@ -8,7 +8,7 @@ namespace register_fiddler{
 
     class Load: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Load(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Load(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -16,7 +16,7 @@ namespace register_fiddler{
     
     class Save: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Save(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Save(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };

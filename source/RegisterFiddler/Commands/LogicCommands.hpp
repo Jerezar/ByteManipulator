@@ -8,7 +8,7 @@ namespace register_fiddler{
 
     class And: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            And(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            And(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -16,7 +16,7 @@ namespace register_fiddler{
     
     class Or: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Or(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Or(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -24,7 +24,7 @@ namespace register_fiddler{
     
     class Xor: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Xor(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Xor(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -32,7 +32,7 @@ namespace register_fiddler{
     
     class Xnor: public RegFiddlerCommand, public NumericInputCommand{
         public:
-            Xnor(RegFiddler _fiddler, RegFiddlerView _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Xnor(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
