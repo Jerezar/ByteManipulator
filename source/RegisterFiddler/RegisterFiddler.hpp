@@ -64,6 +64,7 @@ namespace register_fiddler{
             
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);
+            uint8_t getFlags() { return flags;};
             
     };
     
