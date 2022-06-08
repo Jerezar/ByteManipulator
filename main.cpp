@@ -40,6 +40,7 @@
 #include "FiddlerCommands/FiddlerMemory/FiddlerMemoryLoad.hpp"
 
 #include "InputOutputFacility.hpp"
+#include "InputLogger.hpp"
 #include "StandardStreamHandler.hpp"
 #include "ScriptReader.hpp"
 #include "RunScript.hpp"
@@ -103,7 +104,8 @@ int main(int argc, char* argv[]){
     if(runScript){
         io = std::make_shared<ScriptReader>(scriptPath);
     } else {
-        io = std::make_shared<StandardStreamHandler>(); 
+        auto userInput = std::make_shared<StandardStreamHandler>();
+        io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
     }
     
     ByteManipulator b(commands, io);
