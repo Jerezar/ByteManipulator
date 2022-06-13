@@ -10,19 +10,24 @@
 const std::string ByteManipulator::quit = ("quit");
 const std::string ByteManipulator::help = ("help");
 
-ByteManipulator::ByteManipulator(InstructionSet cS, InputOutputHandler _io){
+ByteManipulator::ByteManipulator(InstructionSet cS, InputOutputHandler _io, Instruction _pre, Instruction _post){
     commandSet = cS;
     io = _io;
+    preInstruction = _pre;
+    postInstruction = _post;
 }
 
 void ByteManipulator::loop(){
+
+    io->print(preInstruction->execute(std::vector< std::string >()));
+
     io->print(ByteManipulator::help + "\tShow commands");
     io->print(ByteManipulator::quit + "\tEnd program");
     while (true){
         std::string input = io->read("Input: ");
         
         if(input == ByteManipulator::quit) {
-            return;
+            break;
         } else if(input == ByteManipulator::help){
             io->print(ByteManipulator::help + "\tShow commands");
             io->print(ByteManipulator::quit + "\tEnd program");
@@ -44,4 +49,6 @@ void ByteManipulator::loop(){
             }
         }
     }
+    
+    io->print(postInstruction->execute(std::vector< std::string >()));
 }
