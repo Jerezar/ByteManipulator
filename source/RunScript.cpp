@@ -15,7 +15,7 @@ std::string RunScript::execute(std::vector<std::string> args){
     std::string output("{\n");
     
     while(input != ControlElement::quit){
-        std::vector< std::string > args = split( input, " ");
+        std::vector< std::string > args = fw_byte_manip::string_utils::split( input, " ");
         if(args.size() > 0){
             Instruction command = commandSet->getInstruction(args[0]);
                 output += command->execute(args) + "\n";

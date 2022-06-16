@@ -8,7 +8,7 @@ TEST_CASE("string wird korrekt aufgeteilt?", "[split]"){
     std::vector< std::string > words;
     
     SECTION( "Geteilt an Muster mit Länge 1" ){
-        words = split(sentence, " ");
+        words = fw_byte_manip::string_utils::split(sentence, " ");
         
         REQUIRE(words.size() == 4);
         REQUIRE(words[0] == "Dies");
@@ -18,7 +18,7 @@ TEST_CASE("string wird korrekt aufgeteilt?", "[split]"){
     }
     
     SECTION( "Geteilt an Muster mit Länge 3" ){
-        words = split(sentence, "ein");
+        words = fw_byte_manip::string_utils::split(sentence, "ein");
         
         REQUIRE(words.size() == 2);
         REQUIRE(words[0] == "Dies ist ");

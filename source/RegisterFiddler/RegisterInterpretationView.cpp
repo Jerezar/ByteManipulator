@@ -3,12 +3,13 @@
 #include <sstream>
 #include <iomanip>
 #include <vector>
+#include "string_utils.hpp"
 
 namespace register_fiddler{
     std::string RegisterInterpretationView::display(){
         std::ostringstream result;
         
-        std::vector<std::string> names = fiddler->getRegisters()->getNames();
+        std::vector<std::string> names = fiddler->getRegisters()->getNames();        
         
         result << std::setw(8) << "Reg" << " ";
         result << std::setw(8) << "Byte"<< " ";
@@ -31,9 +32,7 @@ namespace register_fiddler{
             result << std::setw(5) << char( std::isprint(regByte) ? regByte : ' ' ) << " ";
             result << std::setw(5) << std::setprecision(2) << std::fixed << (100 * (((float)regByte)/255)) << " ";
             
-            result << "\u001b[38;5;" << (int)regByte << "m";
-            result << "TEXT";
-            result << "\u001b[0m";
+            result << fw_byte_manip::string_utils::ansi_8b_col_text("TEXT", regByte);
             result << std::endl;
         }
         
