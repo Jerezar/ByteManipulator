@@ -7,22 +7,29 @@
 
 #include "InstructionWrapper.hpp"
 
-ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io){
+const std::string ControlElement::quit = ("quit");
+const std::string ControlElement::help = ("help");
+
+ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io, Instruction _pre, Instruction _post){
     commandSet = cS;
     io = _io;
+    preInstruction = _pre;
+    postInstruction = _post;
 }
 
 void ControlElement::loop(){
-    io->print("help\tShow commands");
-    io->print("quit\tEnd program");
+    io->print(preInstruction->execute(std::vector< std::string >()));
+
+    io->print(ControlElement::help + "\tShow commands");
+    io->print(ControlElement::quit + "\tEnd program");
     while (true){
         std::string input = io->read("Input: ");
         
-        if(input == "quit") {
-            return;
-        } else if(input == "help"){
-            io->print("help\tShow commands");
-            io->print("quit\tEnd program");
+        if(input == ControlElement::quit) {
+            break;
+        } else if(input == ControlElement::help){
+            io->print(ControlElement::help + "\tShow commands");
+            io->print(ControlElement::quit + "\tEnd program");
             io->print(commandSet->help());
         } else {
             
@@ -41,4 +48,6 @@ void ControlElement::loop(){
             }
         }
     }
+    
+    io->print(postInstruction->execute(std::vector< std::string >()));
 }

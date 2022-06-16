@@ -14,7 +14,11 @@
 #include "StringNumberConverter.hpp"
 
 #include "InputOutputFacility.hpp"
+#include "InputLogger.hpp"
+#include "OutputLogger.hpp"
 #include "StandardStreamHandler.hpp"
+#include "ScriptReader.hpp"
+#include "RunScript.hpp"
 
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
@@ -33,8 +37,23 @@
 #include "RegisterFiddler/Commands/MiscCommands.hpp"
 #include "RegisterFiddler/Commands/MemoryCommands.hpp"
 
-
 int main(int argc, char* argv[]){
+    
+    std::vector< std::string > arg (argv, argv + argc);
+    
+    std::string scriptPath;
+    bool runScript = false;
+    
+    for( std::vector< std::string >::iterator iter = arg.begin(); iter < arg.end(); iter++){
+        std::cout << *iter << std::endl;
+        if( *iter == "-s"){
+            ++iter;
+            if(iter < arg.end()){
+                runScript = true;
+                scriptPath = *iter;
+            }
+        }
+    }
     
     auto fidRegisters = std::make_shared< register_fiddler::RegisterMap >(
         std::vector< std::string >(
@@ -90,9 +109,20 @@ int main(int argc, char* argv[]){
         }
     );
 
-    InstructionSet commands = std::make_shared<InstructionMap>(commandMap);
+    std::shared_ptr<InstructionMap> commands = std::make_shared<InstructionMap>(commandMap);
     
-    InputOutputHandler io = std::make_shared<StandardStreamHandler>();
+    commands->registerInstruction(
+            "run", std::make_shared<RunScript>(commands));
+    
+    InputOutputHandler io;
+    
+    if(runScript){
+        auto script = std::make_shared<ScriptReader>(scriptPath);
+        io = std::make_shared<fw_byte_manip::OutputLogger>( script, "./OutputFile.txt", false);
+    } else {
+        auto userInput = std::make_shared<StandardStreamHandler>();
+        io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
+    }
     
     ControlElement b(commands, io);
     
