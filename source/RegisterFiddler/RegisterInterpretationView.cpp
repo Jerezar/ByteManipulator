@@ -5,6 +5,9 @@
 #include <vector>
 
 namespace register_fiddler{
+    /**
+    * Shows the byte as binary, octal, decimal and hexadecimal integer values, as an ASCII character, as the percentage of the maximum byte value and as a 8-bit color code.
+    */
     std::string RegisterInterpretationView::display(){
         std::ostringstream result;
         
