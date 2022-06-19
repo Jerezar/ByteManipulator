@@ -17,6 +17,15 @@ ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io, Instru
     postInstruction = _post;
 }
 
+/**
+* First executes the preInstruction and prints the output of that.
+* Then prints the innate commands.
+* Afterwards, in a loop, it reads lines of input, with the arguments separated be spaces. The first argument is the name of the command that is to be called.
+*@note The innate commands take priority, but have no arguments and only execute if the entire input matches. If the InstructionSet has commands of the same name, those will only execute if they *do* take arguments.
+*
+* If an exception is caught in the execution of a command, the usage of that command is printed instead of its output.
+* Once the loop is ended with the quit command, the postInstruction is executed. 
+*/
 void ControlElement::loop(){
     io->print(preInstruction->execute(std::vector< std::string >()));
 

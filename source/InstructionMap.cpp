@@ -27,10 +27,16 @@ std::string InstructionMap::help(){
     return result;
 }
 
+/**
+* @note Equivalent to calling the other registerInstruction(std::map<std::string, Instruction> commands) with a map of one.
+*/
 void InstructionMap::registerInstruction(std::string name, Instruction instr){
     this->registerInstruction( { {name, instr} } );
 }
 
+/**
+* If a new Instruction has the same name as a previous one it will not be added.
+*/
 void InstructionMap::registerInstruction(std::map<std::string, Instruction> commands){
     this->instructions.merge(commands);
 }
