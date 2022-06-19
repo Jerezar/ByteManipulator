@@ -4,7 +4,10 @@
 #include <fstream>
 
 namespace fw_byte_manip {
-    
+    /**
+    * Prints the View into the target file.
+    * Takes a path as an optional argument.
+    */
     std::string PrintViewToFile::execute(std::vector<std::string> args){
         std::string result;
         std::fstream file;
