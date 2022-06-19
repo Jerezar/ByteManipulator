@@ -5,7 +5,9 @@
 #include "NumericInputCommand.hpp"
 
 namespace register_fiddler{
-
+    /**
+    * An Instruction that makes the RegisterFiddler load a byte from memory into a register.
+    */
     class Load: public RegFiddlerCommand, public NumericInputCommand{
         public:
             Load(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
@@ -13,7 +15,9 @@ namespace register_fiddler{
             virtual std::string usage() override;
     };
     
-    
+    /**
+    * An Instruction that makes the RegisterFiddler save a byte from a register into memory.
+    */
     class Save: public RegFiddlerCommand, public NumericInputCommand{
         public:
             Save(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};

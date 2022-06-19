@@ -5,7 +5,9 @@
 #include "NumericInputCommand.hpp"
 
 namespace register_fiddler{
-
+    /**
+    * An Instruction that makes the RegisterFiddler add a value to the target register.
+    */
     class Addition: public RegFiddlerCommand, public NumericInputCommand{
         public:
             Addition(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
@@ -13,7 +15,9 @@ namespace register_fiddler{
             virtual std::string usage() override;
     };
     
-    
+    /**
+    * An Instruction that makes the RegisterFiddler subtract a value from the target register.
+    */
     class Subtraction: public RegFiddlerCommand, public NumericInputCommand{
         public:
             Subtraction(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
@@ -21,7 +25,9 @@ namespace register_fiddler{
             virtual std::string usage() override;
     };
     
-    
+    /**
+    * An Instruction that makes the RegisterFiddler multiply the target register by a value.
+    */
     class Multiplication: public RegFiddlerCommand, public NumericInputCommand{
         public:
             Multiplication(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
@@ -29,7 +35,9 @@ namespace register_fiddler{
             virtual std::string usage() override;
     };
     
-    
+    /**
+    * An Instruction that makes the RegisterFiddler divide the target register by a value.
+    */
     class Division: public RegFiddlerCommand, public NumericInputCommand{
         public:
             Division(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};

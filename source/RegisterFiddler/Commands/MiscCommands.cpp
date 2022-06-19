@@ -3,6 +3,9 @@
 #include <exception>
 
 namespace register_fiddler{
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Move::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -21,7 +24,10 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register.
+    * Opionally takes a register name as a second argument, which makes this instruction move the value of the target register into the second register and then negates that one.
+    */
     std::string Negate::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -44,7 +50,9 @@ namespace register_fiddler{
         return std::string("<target> None/<value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is the index of the bit (starts at 0).
+    */
     std::string ToggleBit::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -63,6 +71,11 @@ namespace register_fiddler{
     const std::string Shift::leftward = "left";
     const std::string Shift::rightward = "right";
     
+    /**
+    * First argument is the target register, second is either Shift::leftward or Shift::rightward.
+    * Optionally takes a number as a third argument, the amount of times the register is shifted.
+    *@throws std::runtime_error if the second argument is not either of the valid inputs.
+    */
     std::string Shift::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -92,7 +105,10 @@ namespace register_fiddler{
     
     const std::string Count::upward = "inc";
     const std::string Count::downward = "dec";
-    
+    /**
+    * First argument is the target register, second is either Count::upward or Count::downward.
+    *@throws std::runtime_error if the second argument is not either of the valid inputs.
+    */
     std::string Count::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         

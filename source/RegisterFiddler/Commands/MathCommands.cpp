@@ -3,7 +3,9 @@
 #include <exception>
 
 namespace register_fiddler{
-
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Addition::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -22,7 +24,9 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Subtraction::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -41,7 +45,9 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Multiplication::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -60,7 +66,10 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    *@throws std::runtime_error if the value or target register are zero
+    */
     std::string Division::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         

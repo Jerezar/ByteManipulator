@@ -1,6 +1,9 @@
 #include "RegisterFiddler/Commands/LogicCommands.hpp"
 
 namespace register_fiddler{
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string And::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -19,7 +22,9 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Or::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -38,7 +43,9 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Xor::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
@@ -57,7 +64,9 @@ namespace register_fiddler{
         return std::string("<target> <value/source>");
     }
     
-    
+    /**
+    * First argument is the target register, second is a value as a string or the name of a source register.
+    */
     std::string Xnor::execute(std::vector<std::string> args){
         std::string target = args.at(1);
         
