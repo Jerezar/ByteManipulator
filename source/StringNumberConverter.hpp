@@ -8,6 +8,12 @@
 
 #include "NumberStringParser.hpp"
 
+/**
+* Converts strings representing binary, octal, decimal and hexadecimal values into a positive integer
+*
+*If the string is only numbers it is considered a decimal string; if it starts with the markers '0b', '0o' or '0x' they are considered binary, octal or hexadecimal respectively.
+*@note Any letters appearing in the string can be either upper or lower case, the outcome is the same.
+*/
 class StringNumberConverter: public NumberStringParser{
 
 
