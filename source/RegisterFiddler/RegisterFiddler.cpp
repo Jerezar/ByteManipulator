@@ -18,7 +18,11 @@ namespace register_fiddler{
         this->move(target, registers->get(source));
     }
     
-    
+    /**
+    *
+    * Sets the carry flag if the result was greater than 255.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::add(std::string target, uint8_t value){
         int result = registers->get(target) + value;
         
@@ -33,7 +37,10 @@ namespace register_fiddler{
         this->add(target, registers->get(source));
     }
     
-    
+    /**
+    * Sets the carry flag if the value was greater than the target.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::sub(std::string target, uint8_t value){
         int result = registers->get(target) - value;
         
@@ -48,7 +55,11 @@ namespace register_fiddler{
         this->sub(target, registers->get(source));
     }
     
-    
+    /**
+    * Sets the carry flag if the result was greater than 255.
+    * The remainder that cannot be displayed is saved in the remainder integer.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::mul(std::string target, uint8_t value){
         int result = registers->get(target) * value;
         
@@ -63,7 +74,11 @@ namespace register_fiddler{
         this->mul(target, registers->get(source));
     }
     
-    
+    /**
+    * Saves the undivided remainder in the remainder integer.
+    * Sets the carry flag to 0.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::div(std::string target, uint8_t value){
         if(value == 0){
             throw std::logic_error("Division by zero\n");
@@ -81,7 +96,10 @@ namespace register_fiddler{
         this->div(target, registers->get(source));
     }
     
-    
+    /**
+    * Sets the carry flag to 0.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::bit_and(std::string target, uint8_t value){
         int result = registers->get(target) & value;
         
@@ -96,7 +114,10 @@ namespace register_fiddler{
         this->bit_and(target, registers->get(source));
     }
     
-    
+    /**
+    * Sets the carry flag to 0.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::bit_or(std::string target, uint8_t value){
         int result = registers->get(target) | value;
         
@@ -111,7 +132,10 @@ namespace register_fiddler{
         this->bit_or(target, registers->get(source));
     }
     
-    
+    /**
+    * Sets the carry flag to 0.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::bit_xor(std::string target, uint8_t value){
         int result = registers->get(target) ^ value;
         
@@ -126,7 +150,10 @@ namespace register_fiddler{
         this->bit_xor(target, registers->get(source));
     }
     
-    
+    /**
+    * Sets the carry flag to 0.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::bit_xnor(std::string target, uint8_t value){
         int result = registers->get(target) ^ value;
         
@@ -141,11 +168,18 @@ namespace register_fiddler{
         this->bit_xnor(target, registers->get(source));
     }
     
-    
+    /**
+    * Does not modify any of the flags.
+    */
     void RegisterFiddler::negate(std::string target){
         registers->negate(target);
     }
     
+    /**
+    * Flags represent the status on the last shift.
+    * Sets the carry flag to the bit that was shifted out.
+    * Updates zero and parity flags.
+    */
     void RegisterFiddler::shift(std::string target, bool left, unsigned int amount){
         for(int i = 0; i < amount; i++){
             uint8_t value = get(target);
@@ -165,6 +199,9 @@ namespace register_fiddler{
         }
     }
     
+    /**
+    * Sets same flags as add() and sub().
+    */
     void RegisterFiddler::count(std::string target, bool up){
         if(up){
             add(target, 1);
