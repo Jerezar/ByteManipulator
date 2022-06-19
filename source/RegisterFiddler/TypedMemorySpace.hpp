@@ -5,6 +5,9 @@
 #include "typedMemory.hpp"
 
 namespace register_fiddler{
+    /**
+    * A MemBlock using an underlying instance of TypedMemory. It is therefor of a fixed size.
+    */
     class TypedMemorySpace: public MemorySpace{
         private:
             TypedMemory mem;

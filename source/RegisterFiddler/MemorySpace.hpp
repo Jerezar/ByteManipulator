@@ -4,6 +4,9 @@
 #include <memory>
 
 namespace register_fiddler{
+    /**
+    * A container for bytes that can be retrieved and deposited, but not immediately modified.
+    */
     class MemorySpace{
         public:
             virtual void set(unsigned int index, uint8_t value) = 0;

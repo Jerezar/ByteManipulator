@@ -5,6 +5,9 @@ namespace register_fiddler{
     TypedMemorySpace::TypedMemorySpace(uint8_t defaultValue): mem(defaultValue){
     }
     
+    /**
+    * @throws std::out_of_range if trying to access an index larger than the size.
+    */
     void TypedMemorySpace::set(unsigned int index, uint8_t value){
         if(index >= TypedMemory::RAWMEMORYSIZE){
             throw std::out_of_range("Index only valid between 0 and " + std::to_string(TypedMemory::RAWMEMORYSIZE) + "\n");
@@ -13,6 +16,9 @@ namespace register_fiddler{
         
     }
     
+    /**
+    * @throws std::out_of_range if trying to access an index larger than the size.
+    */
     uint8_t TypedMemorySpace::get(unsigned int index){
         if(index >= TypedMemory::RAWMEMORYSIZE){
             throw std::out_of_range("Index only valid between 0 and " + std::to_string(TypedMemory::RAWMEMORYSIZE) + "\n");
