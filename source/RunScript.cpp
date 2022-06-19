@@ -5,6 +5,10 @@
 #include <exception>
 #include "string_utils.hpp"
 
+/**
+* Takes one argument, the path to the file that should be run as a script. If one of the lines read from the file is ControlElement::quit it stops executing.
+*@throws std::exception If no argument is given.
+*/
 std::string RunScript::execute(std::vector<std::string> args){
     if(args.size() == 1){
         throw std::exception();

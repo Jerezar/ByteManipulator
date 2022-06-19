@@ -4,6 +4,9 @@
 #include "RegisterFiddlerView.hpp"
 
 namespace register_fiddler{
+    /**
+    * A View displaying the contents of the RegisterFiddler Memory interpreted as ASCII characters.
+    */
     class MemoryInterpretationView: public RegisterFiddlerView{
         public:
             MemoryInterpretationView(RegFiddler _fiddler) : RegisterFiddlerView(_fiddler){};

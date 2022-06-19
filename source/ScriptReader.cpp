@@ -20,6 +20,9 @@ std::string ScriptReader::read(std::string prompt){
     return line;
 }
 
+/**
+* Prints to standard output.
+*/
 void ScriptReader::print(std::string output){
     std::cout << output << std::endl;
 }

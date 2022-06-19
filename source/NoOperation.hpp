@@ -3,6 +3,9 @@
 
 #include "InstructionWrapper.hpp"
 
+/**
+* An Instruction that does nothing.
+*/
 class NoOperation : public InstructionWrapper{
     public:
         NoOperation();

@@ -7,6 +7,9 @@ namespace fw_byte_manip {
         activeView = views.begin()->second;
     }
     
+    /**
+    * @throws std::out_of_range
+    */
     ViewModes::ViewModes( std::map< std::string, View> _views, std::string first )
     {
         views = _views;
