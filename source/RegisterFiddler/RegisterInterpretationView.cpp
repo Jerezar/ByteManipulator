@@ -33,14 +33,14 @@ namespace register_fiddler{
             result << std::setw(5) << std::hex << (int)regByte << " ";
             result << std::dec;
             
-            result << std::setw(6) << char( std::isprint(regByte) ? regByte : ' ' ) << " ";
+            result << std::setw(6) << char( fw_byte_manip::string_utils::is_ascii_print(regByte) ? regByte : '.' ) << " ";
             
             int utfChar = fw_byte_manip::string_utils::codepoint_to_utf8(regByte);
             result << std::setw(10);
-            if(std::isprint(utfChar)){
+            if(fw_byte_manip::string_utils::is_iso_print(regByte)){
                 result << fw_byte_manip::string_utils::utf8_string_from_int32(utfChar);
             } else {
-                result << " ";
+                result << ".";
             }
             result << " ";
             

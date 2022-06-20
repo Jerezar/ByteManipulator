@@ -62,6 +62,26 @@ namespace fw_byte_manip{
             return result;
         }
         
+        bool is_iso_print(uint8_t c){
+            if(c < 128){
+                return std::isprint(c);
+            } else {
+                if(c >= 0x7f && c < 0xa0){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+        
+        bool is_ascii_print(uint8_t c){
+            if(c < 128){
+                return std::isprint(c);
+            } 
+            
+            return false;
+        }
+        
         std::string ansi_8b_col_text(std::string text, uint8_t value){
             return "\u001b[38;5;" + std::to_string(value) + "m" + text + "\u001b[0m"; 
         }

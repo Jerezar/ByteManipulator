@@ -26,6 +26,16 @@ namespace fw_byte_manip{
         std::string utf8_string_from_int32(int c);
         
         /**
+        * Checks if a byte is a printable ISO-8859-1 character
+        */
+        bool is_iso_print(uint8_t c);
+        
+        /**
+        * Checks if a byte is a printable ASCII character
+        */
+        bool is_ascii_print(uint8_t c);
+        
+        /**
         * Surrounds a string with the ANSI escape sequence for colored text.
         */
         std::string ansi_8b_col_text(std::string text, uint8_t value);
