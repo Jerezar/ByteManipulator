@@ -42,7 +42,7 @@ void ControlElement::loop(){
             io->print(commandSet->help());
         } else {
             
-            std::vector< std::string > args = split( input, " ");
+            std::vector< std::string > args = fw_byte_manip::string_utils::split( input, " ");
             if(args.size() > 0){
                 Instruction command = commandSet->getInstruction(args[0]);
                 std::string output;
