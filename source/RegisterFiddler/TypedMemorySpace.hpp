@@ -15,6 +15,8 @@ namespace register_fiddler{
             TypedMemorySpace(uint8_t defaultValue = 0);
             void set(unsigned int index, uint8_t value) override; 
             uint8_t get(unsigned int index) override;
+            virtual void write(ByteChain pat, unsigned int index, unsigned int maxLen = 0) override;
+            virtual ByteChain read(unsigned int index, unsigned int len) override;
             virtual unsigned int getSize() override;
     };
 }
