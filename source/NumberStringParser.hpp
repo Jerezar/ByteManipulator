@@ -13,11 +13,11 @@ class NumberStringParser{
         /**
         * Converts the string into an integer value
         */
-        virtual int getValueFromString(std::string string_rep) = 0;
+        virtual uint64_t getUnsignedInt(std::string string_rep) = 0;
         /**
         * @returns true If the string can be converted into a number by the object
         */
-        virtual bool canParse(std::string string_rep) = 0;
+        virtual bool isUnsignedInt(std::string string_rep) = 0;
 };
 
 using ValueParser = std::shared_ptr<NumberStringParser>;

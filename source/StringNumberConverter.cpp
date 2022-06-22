@@ -4,7 +4,7 @@
 
 #include <regex>
 
-int StringNumberConverter::getValueFromString(std::string string_rep){
+uint64_t StringNumberConverter::getUnsignedInt(std::string string_rep){
     
     if(this->isBinary(string_rep)){
         return StringNumberConverter::getBinaryFromString(string_rep);
@@ -20,8 +20,8 @@ int StringNumberConverter::getValueFromString(std::string string_rep){
     }
 }
 
-uint8_t StringNumberConverter::getBinaryFromString(std::string string_rep){
-    uint8_t result = 0;
+uint64_t StringNumberConverter::getBinaryFromString(std::string string_rep){
+    uint64_t result = 0;
     
     string_rep.erase(0, 2);
     
@@ -40,8 +40,8 @@ uint8_t StringNumberConverter::getBinaryFromString(std::string string_rep){
     return result;
 }
 
-uint8_t StringNumberConverter::getOctalFromString(std::string string_rep){
-    uint8_t result = 0;
+uint64_t StringNumberConverter::getOctalFromString(std::string string_rep){
+    uint64_t result = 0;
     
     string_rep.erase(0, 2);
     
@@ -56,8 +56,8 @@ uint8_t StringNumberConverter::getOctalFromString(std::string string_rep){
     return result;
 }
 
-uint8_t StringNumberConverter::getHexFromString(std::string string_rep){
-    uint8_t result = 0;
+uint64_t StringNumberConverter::getHexFromString(std::string string_rep){
+    uint64_t result = 0;
     
     string_rep.erase(0, 2);
     
@@ -79,8 +79,8 @@ uint8_t StringNumberConverter::getHexFromString(std::string string_rep){
     return result;
 }
 
-uint8_t StringNumberConverter::getDecimalFromString(std::string string_rep){
-    uint8_t result = 0;
+uint64_t StringNumberConverter::getDecimalFromString(std::string string_rep){
+    uint64_t result = 0;
     
     for(std::string::iterator iter = string_rep.begin();
         iter< string_rep.end();
@@ -93,7 +93,7 @@ uint8_t StringNumberConverter::getDecimalFromString(std::string string_rep){
     return result;
 }
 
-bool StringNumberConverter::canParse(std::string string_rep){
+bool StringNumberConverter::isUnsignedInt(std::string string_rep){
     return isBinary(string_rep) || isOctal(string_rep) || isDecimal(string_rep) || isHex(string_rep);
 }
 

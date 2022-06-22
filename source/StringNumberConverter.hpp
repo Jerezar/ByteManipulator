@@ -23,13 +23,13 @@ class StringNumberConverter: public NumberStringParser{
         
         };
         
-        virtual int getValueFromString(std::string string_rep) override;
-        static uint8_t getBinaryFromString(std::string string_rep);
-        static uint8_t getOctalFromString(std::string string_rep);
-        static uint8_t getHexFromString(std::string string_rep);
-        static uint8_t getDecimalFromString(std::string string_rep);
+        virtual uint64_t getUnsignedInt(std::string string_rep) override;
+        static uint64_t getBinaryFromString(std::string string_rep);
+        static uint64_t getOctalFromString(std::string string_rep);
+        static uint64_t getHexFromString(std::string string_rep);
+        static uint64_t getDecimalFromString(std::string string_rep);
         
-        virtual bool canParse(std::string string_rep) override;
+        virtual bool isUnsignedInt(std::string string_rep) override;
         bool isBinary(std::string string_rep);
         bool isOctal(std::string string_rep);
         bool isDecimal(std::string string_rep);
