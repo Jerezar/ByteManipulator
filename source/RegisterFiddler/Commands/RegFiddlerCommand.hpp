@@ -9,7 +9,7 @@ namespace register_fiddler{
     /**
     * An Instruction acting specifically on a RegisterFiddler
     */
-    class RegFiddlerCommand: virtual public InstructionWrapper{
+    class RegFiddlerCommand: virtual public fw_byte_manip::InstructionWrapper{
         protected:
             RegFiddler fiddler;
             fw_byte_manip::View view;

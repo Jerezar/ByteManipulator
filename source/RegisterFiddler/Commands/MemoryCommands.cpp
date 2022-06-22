@@ -1,4 +1,5 @@
 #include "RegisterFiddler/Commands/MemoryCommands.hpp"
+#include "string_utils.hpp"
 
 #include <exception>
 

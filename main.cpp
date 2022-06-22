@@ -88,7 +88,7 @@ int main(int argc, char* argv[]){
     ValueParser parser = std::make_shared<StringNumberConverter>();
 
 
-    std::map<std::string, Instruction> commandMap(
+    std::map<std::string, fw_byte_manip::Instruction> commandMap(
         {
             {"add", std::make_shared<register_fiddler::Addition>(regFid, registerDisplay, parser)},
             {"sub", std::make_shared<register_fiddler::Subtraction>(regFid, registerDisplay, parser)},
@@ -109,22 +109,22 @@ int main(int argc, char* argv[]){
         }
     );
 
-    std::shared_ptr<InstructionMap> commands = std::make_shared<InstructionMap>(commandMap);
+    auto commands = std::make_shared<fw_byte_manip::InstructionMap>(commandMap);
     
     commands->registerInstruction(
-            "run", std::make_shared<RunScript>(commands));
+            "run", std::make_shared<fw_byte_manip::RunScript>(commands));
     
-    InputOutputHandler io;
+    fw_byte_manip::InputOutputHandler io;
     
     if(runScript){
-        auto script = std::make_shared<ScriptReader>(scriptPath);
+        auto script = std::make_shared<fw_byte_manip::ScriptReader>(scriptPath);
         io = std::make_shared<fw_byte_manip::OutputLogger>( script, "./OutputFile.txt", false);
     } else {
-        auto userInput = std::make_shared<StandardStreamHandler>();
+        auto userInput = std::make_shared<fw_byte_manip::StandardStreamHandler>();
         io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
     }
     
-    ControlElement b(commands, io);
+    fw_byte_manip::ControlElement b(commands, io);
     
     b.loop();
     

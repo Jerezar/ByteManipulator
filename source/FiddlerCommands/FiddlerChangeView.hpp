@@ -5,7 +5,7 @@
 
 #include "FiddlerViewModes.hpp"
 
-class FiddlerChangeView: virtual public InstructionWrapper{
+class FiddlerChangeView: virtual public fw_byte_manip::InstructionWrapper{
     protected:
         std::shared_ptr<FiddlerViewModes> view;
     public:

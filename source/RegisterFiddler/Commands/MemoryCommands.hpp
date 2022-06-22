@@ -8,9 +8,9 @@ namespace register_fiddler{
     /**
     * An Instruction that makes the RegisterFiddler load a byte from memory into a register.
     */
-    class Load: public RegFiddlerCommand, public NumericInputCommand{
+    class Load: public RegFiddlerCommand, public fw_byte_manip::NumericInputCommand{
         public:
-            Load(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Load(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), fw_byte_manip::NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
@@ -18,9 +18,9 @@ namespace register_fiddler{
     /**
     * An Instruction that makes the RegisterFiddler save a byte from a register into memory.
     */
-    class Save: public RegFiddlerCommand, public NumericInputCommand{
+    class Save: public RegFiddlerCommand, public fw_byte_manip::NumericInputCommand{
         public:
-            Save(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), NumericInputCommand(_parser){};
+            Save(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), fw_byte_manip::NumericInputCommand(_parser){};
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };

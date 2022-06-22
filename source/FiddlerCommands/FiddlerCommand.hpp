@@ -6,7 +6,7 @@
 
 #include "MockFiddlerView.hpp"
 
-class FiddlerCommand: virtual public InstructionWrapper{
+class FiddlerCommand: virtual public fw_byte_manip::InstructionWrapper{
     protected:
         Fiddler target;
         Mfd_View view;

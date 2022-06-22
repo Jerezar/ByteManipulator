@@ -6,7 +6,7 @@
 #include <memory>
 
 
-class MemoryCommand: virtual public InstructionWrapper{
+class MemoryCommand: virtual public fw_byte_manip::InstructionWrapper{
     protected:
         std::shared_ptr<TypedMemory> mem;
     public:
