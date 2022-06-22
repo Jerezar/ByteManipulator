@@ -5,6 +5,13 @@
 #include <memory>
 
 namespace fw_byte_manip{
+    struct ErrorMessage{
+        ErrorMessage(std::string _kind, std::string _desc) { kind = _kind; desc = _desc; };
+        std::string kind;
+        std::string desc;
+        std::string to_string(){ return kind + "\n\t" + desc + "\n";};
+    };
+    
     /**
     * An object that executes an action based on a list of strings.
     */
