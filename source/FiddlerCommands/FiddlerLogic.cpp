@@ -5,7 +5,7 @@ std::string FiddlerAnd::execute(std::vector<std::string> args) {
         throw std::exception();
         return view->display(target);
     }
-    int value = parser->getValueFromString(args.at(1));
+    int value = parser->getUnsignedInt(args.at(1));
     
     int result = value & target->byte;
     
@@ -32,7 +32,7 @@ std::string FiddlerOr::execute(std::vector<std::string> args) {
         throw std::exception();
         return view->display(target);
     }
-    int value = parser->getValueFromString(args.at(1));
+    int value = parser->getUnsignedInt(args.at(1));
     
     int result = value | target->byte;
     
@@ -59,7 +59,7 @@ std::string FiddlerXor::execute(std::vector<std::string> args) {
         throw std::exception();
         return view->display(target);
     }
-    int value = parser->getValueFromString(args.at(1));
+    int value = parser->getUnsignedInt(args.at(1));
     
     int result = value ^ target->byte;
     
@@ -86,7 +86,7 @@ std::string FiddlerXnor::execute(std::vector<std::string> args) {
         throw std::exception();
         return view->display(target);
     }
-    int value = parser->getValueFromString(args.at(1));
+    int value = parser->getUnsignedInt(args.at(1));
     
     int result = value ^ target->byte;
     

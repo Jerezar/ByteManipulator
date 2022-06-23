@@ -7,7 +7,7 @@ std::string FiddlerMemorySave::execute(std::vector<std::string> args){
         throw std::exception();
         return mem->hexDump();
     }
-    int index = parser->getValueFromString(args.at(1));
+    int index = parser->getUnsignedInt(args.at(1));
     
     mem->putChar(index, target->byte);
     

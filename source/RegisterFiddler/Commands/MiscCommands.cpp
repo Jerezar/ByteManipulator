@@ -11,8 +11,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->move(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->move(target, parser->getUnsignedInt(value));
         } else {
             fiddler->move(target, value);
         }
@@ -34,8 +34,8 @@ namespace register_fiddler{
         if(args.size() > 2){
             std::string value = args.at(2);
             
-            if(parser->canParse(value)){
-                fiddler->move(target, parser->getValueFromString(value));
+            if(parser->isUnsignedInt(value)){
+                fiddler->move(target, parser->getUnsignedInt(value));
             } else {
                 fiddler->move(target, value);
             }
@@ -58,7 +58,7 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        fiddler->getRegisters()->toggleBit(target, parser->getValueFromString(value));
+        fiddler->getRegisters()->toggleBit(target, parser->getUnsignedInt(value));
         
         return view->display();
     }
@@ -84,7 +84,7 @@ namespace register_fiddler{
         unsigned int amount = 1;
         if(args.size() > 3){
             std::string value = args.at(3);
-            amount = parser->getValueFromString(value);
+            amount = parser->getUnsignedInt(value);
         }
         
         if( direction == Shift::leftward ){

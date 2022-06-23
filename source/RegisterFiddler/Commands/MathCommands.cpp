@@ -11,8 +11,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->add(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->add(target, parser->getUnsignedInt(value));
         } else {
             fiddler->add(target, value);
         }
@@ -32,8 +32,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->sub(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->sub(target, parser->getUnsignedInt(value));
         } else {
             fiddler->sub(target, value);
         }
@@ -53,8 +53,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->mul(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->mul(target, parser->getUnsignedInt(value));
         } else {
             fiddler->mul(target, value);
         }
@@ -76,8 +76,8 @@ namespace register_fiddler{
         std::string value = args.at(2);
         
         try{
-        if(parser->canParse(value)){
-            fiddler->div(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->div(target, parser->getUnsignedInt(value));
         } else {
             fiddler->div(target, value);
         }

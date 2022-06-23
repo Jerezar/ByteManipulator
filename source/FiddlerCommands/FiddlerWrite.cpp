@@ -6,7 +6,7 @@ std::string FiddlerWrite::execute(std::vector<std::string> args) {
         throw std::exception();
         return view->display(target);
     }
-    int value = parser->getValueFromString(args.at(1));
+    int value = parser->getUnsignedInt(args.at(1));
     
     target->carry = false;
     

@@ -7,7 +7,7 @@ std::string FiddlerMemoryLoad::execute(std::vector<std::string> args){
         throw std::exception();
         return view->display(target);
     }
-    int index = parser->getValueFromString(args.at(1));
+    int index = parser->getUnsignedInt(args.at(1));
     
     target->byte = mem->getChar(index);
     target->zero = (target->byte == 0);

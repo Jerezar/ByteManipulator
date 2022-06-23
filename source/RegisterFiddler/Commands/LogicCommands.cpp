@@ -9,8 +9,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->bit_and(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->bit_and(target, parser->getUnsignedInt(value));
         } else {
             fiddler->bit_and(target, value);
         }
@@ -30,8 +30,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->bit_or(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->bit_or(target, parser->getUnsignedInt(value));
         } else {
             fiddler->bit_or(target, value);
         }
@@ -51,8 +51,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->bit_xor(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->bit_xor(target, parser->getUnsignedInt(value));
         } else {
             fiddler->bit_xor(target, value);
         }
@@ -72,8 +72,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->bit_xnor(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->bit_xnor(target, parser->getUnsignedInt(value));
         } else {
             fiddler->bit_xnor(target, value);
         }
