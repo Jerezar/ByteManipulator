@@ -5,10 +5,6 @@ namespace register_fiddler{
         bytes = _bytes;
     }
     
-    ByteChain::ByteChain(const ByteChain& b){
-        bytes = std::vector<uint8_t>(b.getBytes());
-    }
-    
     ByteChain::ByteChain(void* src, int size){
         bytes = std::vector<uint8_t>(size, 0);
         for (int i=0; i<size; i++){

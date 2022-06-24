@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "RegisterFiddler/ByteChain.hpp"
+#include <algorithm>
 
 TEST_CASE("Construction from Vector", "[]"){
     std::vector<uint8_t> input( {120, 250, 130, 23, 16} );
@@ -25,16 +26,13 @@ TEST_CASE("Copy-Construction", "[]"){
 TEST_CASE("Created from Type", "[]"){
     unsigned long long first = 0x00afe9da120400ff;
     register_fiddler::ByteChain test(&first, sizeof(unsigned long long));
+    std::vector<uint8_t> prediction({0x00, 0xaf, 0xe9, 0xda, 0x12, 0x04, 0x00, 0xff});
+    
+    //This was written on a little-endian system
+    std::reverse(prediction.begin(), prediction.end());
     
     REQUIRE(test.size() == sizeof(unsigned long long));
-    REQUIRE(test[0] == 0xff);
-    REQUIRE(test[1] == 0x00);
-    REQUIRE(test[2] == 0x04);
-    REQUIRE(test[3] == 0x12);
-    REQUIRE(test[4] == 0xda);
-    REQUIRE(test[5] == 0xe9);
-    REQUIRE(test[6] == 0xaf);
-    REQUIRE(test[7] == 0x00);
+    REQUIRE(test.getBytes() == prediction);
 }
 
 TEST_CASE("Properly dumped Type", "[]"){

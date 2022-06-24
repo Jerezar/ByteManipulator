@@ -10,8 +10,8 @@ namespace register_fiddler{
             std::vector<uint8_t> bytes;
             
         public:
+            ByteChain() = default;
             ByteChain(std::vector<uint8_t> _bytes);
-            ByteChain(const ByteChain& b);
             ByteChain(void* src, int size);
             
             void dump(void* dest, int size);
