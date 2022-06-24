@@ -24,6 +24,15 @@ namespace register_fiddler{
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
+    
+    class Write: public RegFiddlerCommand, public fw_byte_manip::NumericInputCommand{
+        public:
+            static const std::string listOption;
+            static const std::vector<std::string> types;
+            Write(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), fw_byte_manip::NumericInputCommand(_parser){};
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
 }
 
 #endif

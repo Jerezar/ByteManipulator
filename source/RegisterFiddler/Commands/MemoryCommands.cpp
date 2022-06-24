@@ -2,6 +2,7 @@
 #include "string_utils.hpp"
 
 #include <exception>
+#include <algorithm>
 
 namespace register_fiddler{
     /**
@@ -13,8 +14,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->load(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->load(target, parser->getUnsignedInt(value));
         } else {
             fiddler->load(target, fiddler->get(value));
         }
@@ -35,8 +36,8 @@ namespace register_fiddler{
         
         std::string value = args.at(2);
         
-        if(parser->canParse(value)){
-            fiddler->save(target, parser->getValueFromString(value));
+        if(parser->isUnsignedInt(value)){
+            fiddler->save(target, parser->getUnsignedInt(value));
         } else {
             fiddler->save(target, fiddler->get(value));
         }
@@ -46,5 +47,60 @@ namespace register_fiddler{
     
     std::string Save::usage(){
         return std::string("<source> <index>");
+    }
+    
+    
+    const std::string Write::listOption("types");
+    const std::vector<std::string> Write::types( {"u16", "u32", "u64", "str"} );
+    
+    std::string Write::execute(std::vector<std::string> args){
+        std::string index;
+        std::string type;
+        std::string val;
+        
+        if(args.size() == 2 && args.at(1) == Write::listOption){
+            std::string typeList;
+            for(std::vector<std::string>::const_iterator iter = Write::types.begin(); iter < Write::types.end(); iter++){
+                typeList += *iter + "\n";
+            }
+            return typeList;
+        } else if(args.size() >= 4){
+            index = args.at(1);
+            type = args.at(2);
+            val = args.at(3);
+        } else {
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
+        if(!parser->isUnsignedInt(index)){
+            return fw_byte_manip::ErrorMessage("Invalid input", "Must be a valid index" ).to_string();
+        }
+        
+        if(std::find(Write::types.begin(), Write::types.end(), type) ==  Write::types.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", "Must be a valid type (see option \" " + Write::listOption + "\")").to_string();
+        } else {
+            
+            ByteChain b;
+            if(type == Write::types[0]){
+                uint16_t num = parser->getUnsignedInt(val);
+                b = ByteChain(&num, sizeof(num));
+            } else if(type == Write::types[1]){
+                uint32_t num = parser->getUnsignedInt(val);
+                b = ByteChain(&num, sizeof(num));
+            } else if(type == Write::types[2]){
+                uint64_t num = parser->getUnsignedInt(val);
+                b = ByteChain(&num, sizeof(num));
+            } else if(type == Write::types[3]){
+                b = ByteChain(std::vector<uint8_t>(val.begin(), val.end()));
+            }
+            
+            fiddler->getMem()->write(b, parser->getUnsignedInt(index));
+        }
+        
+        return view->display();
+    }
+    
+    std::string Write::usage(){
+        return std::string("<index> <type> <value>");
     }
 }

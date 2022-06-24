@@ -106,6 +106,8 @@ int main(int argc, char* argv[]){
             {"save", std::make_shared<register_fiddler::Save>(regFid, registerDisplay, parser)},
             {"load", std::make_shared<register_fiddler::Load>(regFid, registerDisplay, parser)},
             {"view", std::make_shared<fw_byte_manip::SwitchView>(registerDisplay)}
+            ,
+            {"write", std::make_shared<register_fiddler::Write>(regFid, registerDisplay, parser)}
         }
     );
 
