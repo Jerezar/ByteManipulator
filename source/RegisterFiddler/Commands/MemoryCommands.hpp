@@ -61,6 +61,21 @@ namespace register_fiddler{
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };
+    
+    class DumpMemory : public RegFiddlerCommand{
+        protected:
+            std::string defaultPath;
+        public:
+            /**
+            * @param _view The View that is meant to be printed into the file
+            * @param path The path of the file that will be printed into, as long as no other path is passed as an argument
+            */
+            DumpMemory(RegFiddler _fiddler, fw_byte_manip::View _view, std::string path = "./FiddlerMemory.bin"): RegFiddlerCommand(_fiddler, _view){
+                defaultPath = path;
+            };
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
 }
 
 #endif

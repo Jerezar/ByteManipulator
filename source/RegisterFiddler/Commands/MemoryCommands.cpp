@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <algorithm>
+#include <fstream>
 
 namespace register_fiddler{
     /**
@@ -172,5 +173,36 @@ namespace register_fiddler{
     
     std::string Insert::usage(){
         return "<index> <value> <length>";
+    }
+    
+    /**
+    * Prints the memory contents into the target file.
+    * Takes a path as an optional argument.
+    */
+    std::string DumpMemory::execute(std::vector<std::string> args){
+        std::string result;
+        std::fstream file;
+        
+        std::string targetPath = defaultPath;
+        
+        if(args.size() > 1){
+            targetPath = args.at(1);
+        }
+        
+        std::vector<uint8_t> bytes = fiddler->getMem()->read(0, fiddler->getMem()->getSize()).getBytes();
+        
+        file.open(targetPath, (std::ios_base::out | std::ios_base::app));
+        
+        if(file.is_open()){
+            file.write((char*)bytes.data(), bytes.size());
+            result += "Memory saved to " + targetPath + "\n";
+        }
+        
+        file.close();
+        return result + view->display();
+    }
+    
+    std::string DumpMemory::usage(){
+        return "<path>";
     }
 }

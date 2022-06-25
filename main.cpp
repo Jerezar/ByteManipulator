@@ -22,6 +22,7 @@
 
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
+#include "RegisterFiddler/StringMem.hpp"
 #include "RegisterFiddler/TypedMemorySpace.hpp"
 
 #include "ViewModes.hpp"
@@ -66,7 +67,7 @@ int main(int argc, char* argv[]){
         )
     );
     
-    auto regFidMemory = std::make_shared<register_fiddler::TypedMemorySpace>(0);
+    auto regFidMemory = std::make_shared<register_fiddler::StringMem>("");
     
     register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters, regFidMemory
     );
@@ -105,9 +106,11 @@ int main(int argc, char* argv[]){
             {"count", std::make_shared<register_fiddler::Count>(regFid, registerDisplay, parser)},
             {"save", std::make_shared<register_fiddler::Save>(regFid, registerDisplay, parser)},
             {"load", std::make_shared<register_fiddler::Load>(regFid, registerDisplay, parser)},
-            {"view", std::make_shared<fw_byte_manip::SwitchView>(registerDisplay)}
-            ,
-            {"write", std::make_shared<register_fiddler::Write>(regFid, registerDisplay, parser)}
+            {"view", std::make_shared<fw_byte_manip::SwitchView>(registerDisplay)},
+            {"write", std::make_shared<register_fiddler::Write>(regFid, registerDisplay, parser)},
+            {"erase", std::make_shared<register_fiddler::Erase>(regFidMemory, registerDisplay, parser)},
+            {"insert", std::make_shared<register_fiddler::Insert>(regFidMemory, registerDisplay, parser)},
+            {"dump", std::make_shared<register_fiddler::DumpMemory>(regFid, registerDisplay, "./FiddlerMemory.bin")}
         }
     );
 
