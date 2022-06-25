@@ -3,6 +3,7 @@
 
 #include "RegisterFiddler/Commands/RegFiddlerCommand.hpp"
 #include "NumericInputCommand.hpp"
+#include "RegisterFiddler/VariableLengthMem.hpp"
 
 namespace register_fiddler{
     /**
@@ -30,6 +31,33 @@ namespace register_fiddler{
             static const std::string listOption;
             static const std::vector<std::string> types;
             Write(RegFiddler _fiddler, fw_byte_manip::View _view, ValueParser _parser): RegFiddlerCommand(_fiddler, _view), fw_byte_manip::NumericInputCommand(_parser){};
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
+    
+    
+    /**
+    * Instruction that erases a span of memory from a VariableLengthMem object.
+    */
+    class Erase: public fw_byte_manip::NumericInputCommand{
+        private:
+            std::shared_ptr<VariableLengthMem> mem;
+            fw_byte_manip::View view;
+        public:
+            Erase(std::shared_ptr<VariableLengthMem> _mem, fw_byte_manip::View _view, ValueParser _parser): fw_byte_manip::NumericInputCommand(_parser) { mem = _mem; view = _view; };
+            virtual std::string execute(std::vector<std::string> args) override;
+            virtual std::string usage() override;
+    };
+    
+    /**
+    * Instruction that erases a span of memory from a VariableLengthMem object.
+    */
+    class Insert: public fw_byte_manip::NumericInputCommand{
+        private:
+            std::shared_ptr<VariableLengthMem> mem;
+            fw_byte_manip::View view;
+        public:
+            Insert(std::shared_ptr<VariableLengthMem> _mem, fw_byte_manip::View _view, ValueParser _parser): fw_byte_manip::NumericInputCommand(_parser) { mem = _mem; view = _view; };
             virtual std::string execute(std::vector<std::string> args) override;
             virtual std::string usage() override;
     };

@@ -1,6 +1,6 @@
 #include "StringMem.hpp"
 #include <exception>
-
+#include <iterator>
 
 
 namespace register_fiddler{
@@ -66,6 +66,10 @@ namespace register_fiddler{
         mem.insert(mem.begin() + index, length, val);
     }
     void StringMem::erase(unsigned int index, unsigned int length){
-        mem.erase(mem.begin() + index, mem.begin() + index + length);
+        if( index < mem.length()){
+            std::string::iterator start = mem.begin() + index;
+            std::string::iterator end = (start + length < mem.end()) ? (start + length) : mem.end();
+            mem.erase(start, end);
+        }
     }
 }

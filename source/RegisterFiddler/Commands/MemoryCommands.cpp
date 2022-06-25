@@ -103,4 +103,74 @@ namespace register_fiddler{
     std::string Write::usage(){
         return std::string("<index> <type> <value>");
     }
+    
+    
+    std::string Erase::execute(std::vector<std::string> args){
+        unsigned int index;
+        unsigned int length = 1;
+        
+        if(args.size() < 2){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
+        if(parser->isUnsignedInt(args.at(1))){
+            index = parser->getUnsignedInt(args.at(1));
+        } else {
+            return fw_byte_manip::ErrorMessage("Invalid input", "Must be a valid index" ).to_string();
+        }
+        
+        if(args.size() >= 3){
+            if(parser->isUnsignedInt(args.at(2))){
+                length = parser->getUnsignedInt(args.at(2));
+            } else {
+                return fw_byte_manip::ErrorMessage("Invalid input", "Must be a positive integer" ).to_string();
+            }
+        }
+        
+        mem->erase(index, length);
+        
+        return view->display();
+    }
+    
+    std::string Erase::usage(){
+        return "<index> <length>";
+    }
+    
+    std::string Insert::execute(std::vector<std::string> args){
+        unsigned int index;
+        uint8_t val;
+        unsigned int length = 1;
+        
+        if(args.size() < 2){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
+        if(parser->isUnsignedInt(args.at(1))){
+            index = parser->getUnsignedInt(args.at(1));
+        } else {
+            return fw_byte_manip::ErrorMessage("Invalid input", "Must be a valid index" ).to_string();
+        }
+        
+        if(parser->isUnsignedInt(args.at(2))){
+            val = parser->getUnsignedInt(args.at(2));
+        } else {
+            return fw_byte_manip::ErrorMessage("Invalid input", "Must be a positive integer" ).to_string();
+        }
+        
+        if(args.size() >= 4){
+            if(parser->isUnsignedInt(args.at(3))){
+                length = parser->getUnsignedInt(args.at(3));
+            } else {
+                return fw_byte_manip::ErrorMessage("Invalid input", "Must be a positive integer" ).to_string();
+            }
+        }
+        
+        mem->insert(index, length, val);
+        
+        return view->display();
+    }
+    
+    std::string Insert::usage(){
+        return "<index> <value> <length>";
+    }
 }
