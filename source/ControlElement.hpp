@@ -4,7 +4,7 @@
 #include"InputOutputFacility.hpp"
 #include "InstructionRegistry.hpp"
 
-#include "InstructionSequence.hpp"
+#include "Instructions/InstructionSequence.hpp"
 
 namespace fw_byte_manip{
     /**

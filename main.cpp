@@ -6,7 +6,7 @@
 #include <string>
 
 #include "InstructionRegistry.hpp"
-#include "InstructionMap.hpp"
+#include "InstructionSets/InstructionMap.hpp"
 
 #include "InstructionWrapper.hpp"
 
@@ -14,25 +14,26 @@
 #include "StringNumberConverter.hpp"
 
 #include "InputOutputFacility.hpp"
-#include "InputLogger.hpp"
-#include "OutputLogger.hpp"
-#include "StandardStreamHandler.hpp"
-#include "ScriptReader.hpp"
-#include "RunScript.hpp"
+#include "InputOutputHandlers/InputLogger.hpp"
+#include "InputOutputHandlers/OutputLogger.hpp"
+#include "InputOutputHandlers/StandardStreamHandler.hpp"
+#include "InputOutputHandlers/ScriptReader.hpp"
+
+#include "Instructions/RunScript.hpp"
 
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
 #include "RegisterFiddler/StringMem.hpp"
 #include "RegisterFiddler/TypedMemorySpace.hpp"
 
-#include "ViewModes.hpp"
-#include "CombinedView.hpp"
+#include "Views/ViewModes.hpp"
+#include "Views/CombinedView.hpp"
 #include "RegisterFiddler/ViewRegistersOnly.hpp"
 #include "RegisterFiddler/ViewMemoryOnly.hpp"
 #include "RegisterFiddler/RegisterInterpretationView.hpp"
 #include "RegisterFiddler/MemoryInterpretationView.hpp"
 
-#include "SwitchView.hpp"
+#include "Instructions/SwitchView.hpp"
 #include "RegisterFiddler/Commands/MathCommands.hpp"
 #include "RegisterFiddler/Commands/LogicCommands.hpp"
 #include "RegisterFiddler/Commands/MiscCommands.hpp"

@@ -3,7 +3,7 @@
 
 #include "InstructionWrapper.hpp"
 
-#include "ViewModes.hpp"
+#include "Views/ViewModes.hpp"
 namespace fw_byte_manip {
     /**
     * An Instruction that makes a ViewModes object switch between active Views.

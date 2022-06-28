@@ -1,7 +1,7 @@
 #include "InstructionMap.hpp"
 
 #include <memory>
-#include "NoOperation.hpp"
+#include "Instructions/NoOperation.hpp"
 
 namespace fw_byte_manip{
     InstructionMap::InstructionMap(std::map<std::string, Instruction> commands){

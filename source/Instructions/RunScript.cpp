@@ -1,7 +1,7 @@
 #include "RunScript.hpp"
 
 #include "ControlElement.hpp"
-#include "ScriptReader.hpp"
+#include "InputOutputHandlers/ScriptReader.hpp"
 #include <exception>
 #include "string_utils.hpp"
 
