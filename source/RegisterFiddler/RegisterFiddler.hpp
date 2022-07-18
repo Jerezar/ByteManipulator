@@ -38,7 +38,9 @@ namespace register_fiddler{
             /**@}*/
             
             RegisterBank getRegisters(){ return registers; };
+            
             MemBlock getMem(){ return mem; };
+            void setMem(MemBlock _mem){ mem = _mem; };
             /**
             * @returns The Value of the target register
             */

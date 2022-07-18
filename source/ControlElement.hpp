@@ -30,6 +30,11 @@ namespace fw_byte_manip{
                 Instruction _pre = std::make_shared<fw_byte_manip::InstructionSequence>(std::vector< std::pair< Instruction, std::string > >()), 
                 Instruction _post = std::make_shared<fw_byte_manip::InstructionSequence>(std::vector< std::pair< Instruction, std::string > >())
             );
+            
+            void setIo(InputOutputHandler _io){ io = _io; };
+            void setCommandSet(InstructionSet _commandSet){ commandSet = _commandSet; };
+            void setPreInstruction(Instruction _preInstruction){ preInstruction = _preInstruction; };
+            void setPostInstruction(Instruction _postInstruction){ postInstruction = _postInstruction; };
         
             /**
             * The main execution loop
