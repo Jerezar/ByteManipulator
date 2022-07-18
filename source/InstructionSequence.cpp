@@ -13,4 +13,8 @@ namespace fw_byte_manip{
     std::string InstructionSequence::usage(){
         return "None";
     }
+    
+    void InstructionSequence::add(std::pair<Instruction, std::string> instruction){
+        list.push_back(instruction);
+    }
 }
