@@ -36,6 +36,8 @@ namespace fw_byte_manip{
             */
             void loop();
             
+            void handle(std::string rawInput);
+            
             /**
             * The name of the innate quit command, ending the execution loop
             */
