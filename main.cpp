@@ -23,6 +23,8 @@
 
 #include "Instructions/RunScript.hpp"
 
+#include "BracketParser.hpp"
+
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
 #include "RegisterFiddler/StringMem.hpp"
@@ -173,7 +175,9 @@ int main(int argc, char* argv[]){
         regFid->setMem( extendableMem );
     }
     
-    fw_byte_manip::ControlElement b(commands, io);
+    auto preprocessor = std::make_shared<fw_byte_manip::BracketParser>();
+    
+    fw_byte_manip::ControlElement b(commands, io, preprocessor);
     
     auto postInstructions = std::make_shared<fw_byte_manip::InstructionSequence>();
     

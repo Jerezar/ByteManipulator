@@ -5,6 +5,7 @@
 #include "InstructionRegistry.hpp"
 
 #include "Instructions/InstructionSequence.hpp"
+#include "InputPreprocessor.hpp"
 
 namespace fw_byte_manip{
     /**
@@ -14,6 +15,7 @@ namespace fw_byte_manip{
         private:
             InputOutputHandler io;
             InstructionSet commandSet;
+            Preprocessor preprocessor;
             
             Instruction preInstruction;
             Instruction postInstruction;
@@ -26,7 +28,8 @@ namespace fw_byte_manip{
             */
             ControlElement(
                 InstructionSet cS, 
-                InputOutputHandler _io, 
+                InputOutputHandler _io,
+                Preprocessor _preprocessor, 
                 Instruction _pre = std::make_shared<fw_byte_manip::InstructionSequence>(std::vector< std::pair< Instruction, std::string > >()), 
                 Instruction _post = std::make_shared<fw_byte_manip::InstructionSequence>(std::vector< std::pair< Instruction, std::string > >())
             );
@@ -35,11 +38,14 @@ namespace fw_byte_manip{
             void setCommandSet(InstructionSet _commandSet){ commandSet = _commandSet; };
             void setPreInstruction(Instruction _preInstruction){ preInstruction = _preInstruction; };
             void setPostInstruction(Instruction _postInstruction){ postInstruction = _postInstruction; };
+            void setPreprocessor(Preprocessor _preprocessor) { preprocessor = _preprocessor;};
         
             /**
             * The main execution loop
             */
             void loop();
+            
+            void handle(std::string rawInput);
             
             /**
             * The name of the innate quit command, ending the execution loop

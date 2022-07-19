@@ -1,7 +1,6 @@
 #include "ControlElement.hpp"
 
 #include <string>
-#include "string_utils.hpp"
 
 #include <exception>
 
@@ -12,9 +11,10 @@ namespace fw_byte_manip{
     const std::string ControlElement::quit = ("quit");
     const std::string ControlElement::help = ("help");
     
-    ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io, Instruction _pre, Instruction _post){
+    ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io, Preprocessor _preprocessor, Instruction _pre, Instruction _post){
         commandSet = cS;
         io = _io;
+        preprocessor = _preprocessor;
         preInstruction = _pre;
         postInstruction = _post;
     }
@@ -34,17 +34,27 @@ namespace fw_byte_manip{
         io->print(ControlElement::help + "\tShow commands");
         io->print(ControlElement::quit + "\tEnd program");
         while (true){
-            std::string input = io->read("Input: ");
+            std::string rawInput = io->read("Input: ");
             
-            if(input == ControlElement::quit) {
+            if(rawInput == ControlElement::quit) {
                 break;
-            } else if(input == ControlElement::help){
+            } else {
+                this->handle(rawInput);
+            }
+        }
+        
+        io->print(postInstruction->execute(std::vector< std::string >()));
+    }
+    
+    
+    void ControlElement::handle(std::string rawInput){
+        if(rawInput == ControlElement::help){
                 io->print(ControlElement::help + "\tShow commands");
                 io->print(ControlElement::quit + "\tEnd program");
                 io->print(commandSet->help());
             } else {
                 
-                std::vector< std::string > args = fw_byte_manip::string_utils::split( input, " ");
+                std::vector< std::string > args = preprocessor->parse(rawInput);
                 if(args.size() > 0){
                     Instruction command = commandSet->getInstruction(args[0]);
                     std::string output;
@@ -58,8 +68,5 @@ namespace fw_byte_manip{
                     io->print(output);
                 }
             }
-        }
-        
-        io->print(postInstruction->execute(std::vector< std::string >()));
     }
 }
