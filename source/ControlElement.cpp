@@ -1,7 +1,6 @@
 #include "ControlElement.hpp"
 
 #include <string>
-#include "string_utils.hpp"
 
 #include <exception>
 
@@ -12,9 +11,10 @@ namespace fw_byte_manip{
     const std::string ControlElement::quit = ("quit");
     const std::string ControlElement::help = ("help");
     
-    ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io, Instruction _pre, Instruction _post){
+    ControlElement::ControlElement(InstructionSet cS, InputOutputHandler _io, Preprocessor _preprocessor, Instruction _pre, Instruction _post){
         commandSet = cS;
         io = _io;
+        preprocessor = _preprocessor;
         preInstruction = _pre;
         postInstruction = _post;
     }
@@ -54,7 +54,7 @@ namespace fw_byte_manip{
                 io->print(commandSet->help());
             } else {
                 
-                std::vector< std::string > args = fw_byte_manip::string_utils::split( rawInput, " ");
+                std::vector< std::string > args = preprocessor->parse(rawInput);
                 if(args.size() > 0){
                     Instruction command = commandSet->getInstruction(args[0]);
                     std::string output;

@@ -4,6 +4,7 @@
 #include"InputOutputFacility.hpp"
 #include "InstructionRegistry.hpp"
 
+#include "InputPreprocessor.hpp"
 #include "InstructionSequence.hpp"
 
 namespace fw_byte_manip{
@@ -14,6 +15,7 @@ namespace fw_byte_manip{
         private:
             InputOutputHandler io;
             InstructionSet commandSet;
+            Preprocessor preprocessor;
             
             Instruction preInstruction;
             Instruction postInstruction;
@@ -26,10 +28,13 @@ namespace fw_byte_manip{
             */
             ControlElement(
                 InstructionSet cS, 
-                InputOutputHandler _io, 
+                InputOutputHandler _io,
+                Preprocessor _preprocessor, 
                 Instruction _pre = std::make_shared<fw_byte_manip::InstructionSequence>(std::vector< std::pair< Instruction, std::string > >()), 
                 Instruction _post = std::make_shared<fw_byte_manip::InstructionSequence>(std::vector< std::pair< Instruction, std::string > >())
             );
+            
+            void setPreprocessor(Preprocessor _preprocessor) { preprocessor = _preprocessor;};
         
             /**
             * The main execution loop

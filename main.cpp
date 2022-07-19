@@ -20,6 +20,8 @@
 #include "ScriptReader.hpp"
 #include "RunScript.hpp"
 
+#include "StringSplitter.hpp"
+
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
 #include "RegisterFiddler/StringMem.hpp"
@@ -129,7 +131,9 @@ int main(int argc, char* argv[]){
         io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
     }
     
-    fw_byte_manip::ControlElement b(commands, io);
+    auto preprocessor = std::make_shared<fw_byte_manip::StringSplitter>();
+    
+    fw_byte_manip::ControlElement b(commands, io, preprocessor);
     
     b.loop();
     
