@@ -20,7 +20,7 @@
 #include "ScriptReader.hpp"
 #include "RunScript.hpp"
 
-#include "StringSplitter.hpp"
+#include "BracketParser.hpp"
 
 #include "RegisterFiddler/RegisterFiddler.hpp"
 #include "RegisterFiddler/RegisterMap.hpp"
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]){
         io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
     }
     
-    auto preprocessor = std::make_shared<fw_byte_manip::StringSplitter>();
+    auto preprocessor = std::make_shared<fw_byte_manip::BracketParser>();
     
     fw_byte_manip::ControlElement b(commands, io, preprocessor);
     
