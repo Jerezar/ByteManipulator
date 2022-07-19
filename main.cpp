@@ -5,6 +5,8 @@
 #include <map>
 #include <string>
 
+#include "OptionParser.hpp"
+
 #include "InstructionRegistry.hpp"
 #include "InstructionSets/InstructionMap.hpp"
 
@@ -41,22 +43,33 @@
 
 int main(int argc, char* argv[]){
     
+    /*
+    * Parsing commandline arguments
+    */
     std::vector< std::string > arg (argv, argv + argc);
     
-    std::string scriptPath;
-    bool runScript = false;
+    fw_byte_manip::OptionParser opts;
+    opts.addOption("s", 1);
+    opts.addOption("d", 1);
+    opts.addOption("e", 0);
     
-    for( std::vector< std::string >::iterator iter = arg.begin(); iter < arg.end(); iter++){
-        std::cout << *iter << std::endl;
-        if( *iter == "-s"){
-            ++iter;
-            if(iter < arg.end()){
-                runScript = true;
-                scriptPath = *iter;
-            }
-        }
+    auto parsedArgs = opts.parseArguments(arg);
+    std::string scriptPath;
+    bool runScript = parsedArgs["s"].size();
+    if(runScript){
+        scriptPath = parsedArgs["s"][0][0];
+    }
+    bool editingMode = parsedArgs["e"].size();
+    
+    std::string dumpPath;
+    bool dumpMem = parsedArgs["d"].size();
+    if(dumpMem){
+        dumpPath = parsedArgs["d"][0][0];
     }
     
+    /*
+    * RegisterFiddler creation
+    */
     auto fidRegisters = std::make_shared< register_fiddler::RegisterMap >(
         std::vector< std::string >(
             {
@@ -68,10 +81,21 @@ int main(int argc, char* argv[]){
         )
     );
     
-    auto regFidMemory = std::make_shared<register_fiddler::StringMem>("");
+    auto regFidMemory = std::make_shared<register_fiddler::TypedMemorySpace>(0);;
+        
     
     register_fiddler::RegFiddler regFid = std::make_shared< register_fiddler::RegisterFiddler >(fidRegisters, regFidMemory
     );
+    
+    /*
+    * RegisterFiddler creation end
+    */
+    
+    
+    /*
+    * View creation
+    */
+    
     
     auto registerView = std::make_shared<register_fiddler::ViewRegistersOnly>(regFid);
     auto memoryView = std::make_shared<register_fiddler::ViewMemoryOnly>(regFid);
@@ -85,10 +109,15 @@ int main(int argc, char* argv[]){
     
     
     auto registerDisplay = std::make_shared<fw_byte_manip::ViewModes>(std::map< std::string, fw_byte_manip::View>({ {"interpret", interpView},  {"bytes", dataView} }) );
+    
+    /*
+    * View creation end
+    */
 
 
     ValueParser parser = std::make_shared<StringNumberConverter>();
 
+    auto commands = std::make_shared<fw_byte_manip::InstructionMap>();
 
     std::map<std::string, fw_byte_manip::Instruction> commandMap(
         {
@@ -109,13 +138,11 @@ int main(int argc, char* argv[]){
             {"load", std::make_shared<register_fiddler::Load>(regFid, registerDisplay, parser)},
             {"view", std::make_shared<fw_byte_manip::SwitchView>(registerDisplay)},
             {"write", std::make_shared<register_fiddler::Write>(regFid, registerDisplay, parser)},
-            {"erase", std::make_shared<register_fiddler::Erase>(regFidMemory, registerDisplay, parser)},
-            {"insert", std::make_shared<register_fiddler::Insert>(regFidMemory, registerDisplay, parser)},
             {"dump", std::make_shared<register_fiddler::DumpMemory>(regFid, registerDisplay, "./FiddlerMemory.bin")}
         }
     );
-
-    auto commands = std::make_shared<fw_byte_manip::InstructionMap>(commandMap);
+    
+    commands->registerInstruction(commandMap);
     
     commands->registerInstruction(
             "run", std::make_shared<fw_byte_manip::RunScript>(commands));
@@ -130,7 +157,33 @@ int main(int argc, char* argv[]){
         io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
     }
     
+    
+    if(editingMode){
+        auto extendableMem = std::make_shared<register_fiddler::StringMem>("");
+        
+        commands->registerInstruction(
+            std::map<std::string, fw_byte_manip::Instruction>(
+                {
+                    {"erase", std::make_shared<register_fiddler::Erase>(extendableMem, registerDisplay, parser)},
+                    {"insert", std::make_shared<register_fiddler::Insert>(extendableMem, registerDisplay, parser)}
+                }
+            )
+        );
+        
+        regFid->setMem( extendableMem );
+    }
+    
     fw_byte_manip::ControlElement b(commands, io);
+    
+    auto postInstructions = std::make_shared<fw_byte_manip::InstructionSequence>();
+    
+    if(dumpMem){
+        postInstructions->add( {
+            std::make_shared<register_fiddler::DumpMemory>(regFid, registerDisplay, dumpPath), "dump"
+        } );
+    }
+    
+    b.setPostInstruction(postInstructions);
     
     b.loop();
     

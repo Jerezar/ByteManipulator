@@ -14,6 +14,7 @@ namespace fw_byte_manip{
         private:
             std::map<std::string, Instruction> instructions;
         public:
+            InstructionMap(){instructions = std::map<std::string, Instruction>();};
             /**
             * @param commands The initial map of Instructions with their names
             */
