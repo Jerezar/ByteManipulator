@@ -11,6 +11,7 @@ namespace fw_byte_manip{
     class ReadlineHandler: public InputOutputFacility{
         public:
             ReadlineHandler(){};
+            ~ReadlineHandler();
             virtual std::string read(std::string prompt) override;
             virtual void print(std::string output) override;
     };

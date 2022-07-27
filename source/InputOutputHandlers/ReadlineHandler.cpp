@@ -15,13 +15,17 @@ namespace fw_byte_manip{
         
         if(*input)
             add_history(input);
-        free(input);
         
         return result;
     }
     
     void ReadlineHandler::print(std::string output){
         std::cout << output << std::endl;
+    }
+    
+    ReadlineHandler::~ReadlineHandler(){
+        
+        clear_history();
     }
     
 }
