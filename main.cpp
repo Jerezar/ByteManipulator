@@ -18,7 +18,7 @@
 #include "InputOutputFacility.hpp"
 #include "InputOutputHandlers/InputLogger.hpp"
 #include "InputOutputHandlers/OutputLogger.hpp"
-#include "InputOutputHandlers/StandardStreamHandler.hpp"
+#include "InputOutputHandlers/ReadlineHandler.hpp"
 #include "InputOutputHandlers/ScriptReader.hpp"
 
 #include "Instructions/RunScript.hpp"
@@ -155,7 +155,7 @@ int main(int argc, char* argv[]){
         auto script = std::make_shared<fw_byte_manip::ScriptReader>(scriptPath);
         io = std::make_shared<fw_byte_manip::OutputLogger>( script, "./OutputFile.txt", false);
     } else {
-        auto userInput = std::make_shared<fw_byte_manip::StandardStreamHandler>();
+        auto userInput = std::make_shared<fw_byte_manip::ReadlineHandler>();
         io = std::make_shared<fw_byte_manip::InputLogger>( userInput, "./InputLog.txt"); 
     }
     

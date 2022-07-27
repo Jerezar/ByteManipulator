@@ -21,11 +21,11 @@ file(GLOB_RECURSE EXTERNALS ${EXTERNAL_FOLDER}/*.cpp)
 
 include_directories(${SOURCE_FOLDER} ${EXTERNAL_FOLDER})
 
+link_libraries(readline)
+
 add_executable(ByteManipulator main.cpp ${SOURCES} ${EXTERNALS})
 
 target_compile_options(ByteManipulator PUBLIC -Wall -Wextra -Wpedantic -O0 -std=c++17)
-
-
 
 set(TEST_FOLDER tests)
 file(GLOB_RECURSE TESTS ${TEST_FOLDER}/*.cpp)
