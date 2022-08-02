@@ -36,6 +36,7 @@
 #include "RegisterFiddler/ViewMemoryOnly.hpp"
 #include "RegisterFiddler/RegisterInterpretationView.hpp"
 #include "RegisterFiddler/MemoryInterpretationView.hpp"
+#include "RegisterFiddler/MemFloatView.hpp"
 
 #include "Instructions/SwitchView.hpp"
 #include "RegisterFiddler/Commands/MathCommands.hpp"
@@ -110,7 +111,7 @@ int main(int argc, char* argv[]){
     auto interpView = std::make_shared<fw_byte_manip::CombinedView>(std::vector<fw_byte_manip::View>({ regPattern, memDumpView }) );
     
     
-    auto registerDisplay = std::make_shared<fw_byte_manip::ViewModes>(std::map< std::string, fw_byte_manip::View>({ {"interpret", interpView},  {"bytes", dataView} }) );
+    auto registerDisplay = std::make_shared<fw_byte_manip::ViewModes>(std::map< std::string, fw_byte_manip::View>({ {"interpret", interpView},  {"bytes", dataView}, {"float", std::make_shared<register_fiddler::MemFloatView>(regFid)} }) );
     
     /*
     * View creation end
