@@ -52,7 +52,7 @@ namespace register_fiddler{
     
     
     const std::string Write::listOption("types");
-    const std::vector<std::string> Write::types( {"u16", "u32", "u64", "str"} );
+    const std::vector<std::string> Write::types( {"u16", "u32", "u64", "str", "f", "d"} );
     
     std::string Write::execute(std::vector<std::string> args){
         std::string index;
@@ -93,6 +93,13 @@ namespace register_fiddler{
                 b = ByteChain(&num, sizeof(num));
             } else if(type == Write::types[3]){
                 b = ByteChain(std::vector<uint8_t>(val.begin(), val.end()));
+            } else if(type == Write::types[4]){
+                float num = std::stod(val);
+                b = ByteChain(&num, sizeof(num));
+            
+            } else if(type == Write::types[5]){
+                double num = std::stod(val);
+                b = ByteChain(&num, sizeof(num));
             }
             
             fiddler->getMem()->write(b, parser->getUnsignedInt(index));
