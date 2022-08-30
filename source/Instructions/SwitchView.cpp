@@ -4,6 +4,11 @@ namespace fw_byte_manip {
     const std::string SwitchView::listOption = "list";
     
     std::string SwitchView::execute(std::vector<std::string> args){
+        
+        if( args.size() < 2){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         if( args.at(1) == SwitchView::listOption ){
             std::vector< std::string> names = view->getNames();
             std::string list;

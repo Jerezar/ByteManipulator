@@ -11,13 +11,28 @@ namespace register_fiddler{
     * Unlike RegisterFiddler::load(), this can also take a register name as a second argument, using that value as an index.
     */
     std::string Load::execute(std::vector<std::string> args){
+    
+        if( args.size() < 3){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         std::string value = args.at(2);
         
         if(parser->isUnsignedInt(value)){
             fiddler->load(target, parser->getUnsignedInt(value));
         } else {
+            
+            if( std::find(regs.begin(), regs.end(), value) == regs.end()){
+                return fw_byte_manip::ErrorMessage("Invalid input", value + " is not a valid register").to_string();
+            }
+            
             fiddler->load(target, fiddler->get(value));
         }
         
@@ -33,13 +48,29 @@ namespace register_fiddler{
     * Unlike RegisterFiddler::save(), this can also take a register name as a second argument, using that value as an index.
     */
     std::string Save::execute(std::vector<std::string> args){
+    
+        if( args.size() < 3){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         std::string value = args.at(2);
         
         if(parser->isUnsignedInt(value)){
             fiddler->save(target, parser->getUnsignedInt(value));
         } else {
+            
+            if( std::find(regs.begin(), regs.end(), value) == regs.end()){
+                return fw_byte_manip::ErrorMessage("Invalid input", value + " is not a valid register").to_string();
+            }
+            
             fiddler->save(target, fiddler->get(value));
         }
         

@@ -37,6 +37,11 @@ namespace register_fiddler{
             static const uint8_t parityFlag;
             /**@}*/
             
+            /**
+            * Name of the innate flag register.
+            */
+            static const std::string flagRegister;
+            
             RegisterBank getRegisters(){ return registers; };
             
             MemBlock getMem(){ return mem; };
@@ -153,6 +158,7 @@ namespace register_fiddler{
             bool parity(std::string target);
             void setFlags(uint8_t mask, bool value);
             uint8_t getFlags() { return flags;};
+            int getRemainder() { return remainder;};
             
     };
     

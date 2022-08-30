@@ -29,10 +29,12 @@ namespace fw_byte_manip{
     * Once the loop is ended with the quit command, the postInstruction is executed. 
     */
     void ControlElement::loop(){
-        io->print(preInstruction->execute(std::vector< std::string >()));
-    
         io->print(ControlElement::help + "\tShow commands");
         io->print(ControlElement::quit + "\tEnd program");
+        
+        io->print(preInstruction->execute(std::vector< std::string >()));
+        
+        
         while (true){
             std::string rawInput = io->read("Input: ");
             

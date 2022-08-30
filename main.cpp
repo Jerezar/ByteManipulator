@@ -139,7 +139,6 @@ int main(int argc, char* argv[]){
             {"count", std::make_shared<register_fiddler::Count>(regFid, registerDisplay, parser)},
             {"save", std::make_shared<register_fiddler::Save>(regFid, registerDisplay, parser)},
             {"load", std::make_shared<register_fiddler::Load>(regFid, registerDisplay, parser)},
-            {"view", std::make_shared<fw_byte_manip::SwitchView>(registerDisplay)},
             {"write", std::make_shared<register_fiddler::Write>(regFid, registerDisplay, parser)},
             {"dump", std::make_shared<register_fiddler::DumpMemory>(regFid, registerDisplay, "./FiddlerMemory.bin")}
         }
@@ -149,6 +148,10 @@ int main(int argc, char* argv[]){
     
     commands->registerInstruction(
             "run", std::make_shared<fw_byte_manip::RunScript>(commands));
+    
+    auto view_Instr = std::make_shared<fw_byte_manip::SwitchView>(registerDisplay);
+    
+    commands->registerInstruction("view", view_Instr);
     
     fw_byte_manip::InputOutputHandler io;
     
@@ -180,6 +183,9 @@ int main(int argc, char* argv[]){
     
     fw_byte_manip::ControlElement b(commands, io, preprocessor);
     
+    auto preInstructions = std::make_shared<fw_byte_manip::InstructionSequence>();
+    preInstructions->add( {view_Instr, "view bytes"} );
+    
     auto postInstructions = std::make_shared<fw_byte_manip::InstructionSequence>();
     
     if(dumpMem){
@@ -187,7 +193,7 @@ int main(int argc, char* argv[]){
             std::make_shared<register_fiddler::DumpMemory>(regFid, registerDisplay, dumpPath), "dump"
         } );
     }
-    
+    b.setPreInstruction(preInstructions);
     b.setPostInstruction(postInstructions);
     
     b.loop();

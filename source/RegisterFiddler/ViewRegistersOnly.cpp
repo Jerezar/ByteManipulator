@@ -12,7 +12,8 @@ namespace register_fiddler{
         result << std::setw(8) << "PZC" << std::endl;
         
         result << std::setw(8) << "Flags" << ": ";
-        result << std::setw(8) << std::bitset<8>(fiddler->getFlags()).to_string() << std::endl << std::endl;
+        result << std::setw(8) << std::bitset<8>(fiddler->getFlags()).to_string() << std::setw(4) << " ";
+        result << std::setw(9) << "Remainder" << ": " << std::to_string( fiddler->getRemainder() ) << std::endl << std::endl;
         
         std::vector<std::string> names = fiddler->getRegisters()->getNames();
         

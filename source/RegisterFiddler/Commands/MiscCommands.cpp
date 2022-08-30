@@ -1,19 +1,35 @@
 #include "RegisterFiddler/Commands/MiscCommands.hpp"
 
 #include <exception>
+#include <algorithm>
 
 namespace register_fiddler{
     /**
     * First argument is the target register, second is a value as a string or the name of a source register.
     */
     std::string Move::execute(std::vector<std::string> args){
+        
+        if( args.size() < 3){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         std::string value = args.at(2);
         
         if(parser->isUnsignedInt(value)){
             fiddler->move(target, parser->getUnsignedInt(value));
         } else {
+        
+            if( std::find(regs.begin(), regs.end(), value) == regs.end() && value != RegisterFiddler::flagRegister){
+                return fw_byte_manip::ErrorMessage("Invalid input", value + " is not a valid register").to_string();
+            }
+            
             fiddler->move(target, value);
         }
         
@@ -29,7 +45,17 @@ namespace register_fiddler{
     * Opionally takes a register name as a second argument, which makes this instruction move the value of the target register into the second register and then negates that one.
     */
     std::string Negate::execute(std::vector<std::string> args){
+        
+        if( args.size() < 2){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         if(args.size() > 2){
             std::string value = args.at(2);
@@ -54,7 +80,17 @@ namespace register_fiddler{
     * First argument is the target register, second is the index of the bit (starts at 0).
     */
     std::string ToggleBit::execute(std::vector<std::string> args){
+        
+        if( args.size() < 3){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         std::string value = args.at(2);
         
@@ -77,7 +113,17 @@ namespace register_fiddler{
     *@throws std::runtime_error if the second argument is not either of the valid inputs.
     */
     std::string Shift::execute(std::vector<std::string> args){
+        
+        if( args.size() < 3){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         std::string direction = args.at(2);
         
@@ -110,7 +156,17 @@ namespace register_fiddler{
     *@throws std::runtime_error if the second argument is not either of the valid inputs.
     */
     std::string Count::execute(std::vector<std::string> args){
+        
+        if( args.size() < 3){
+            return fw_byte_manip::ErrorMessage("Missing argument", this->usage() ).to_string();
+        }
+        
         std::string target = args.at(1);
+        
+        auto regs = fiddler->getRegisters()->getNames();
+        if( std::find(regs.begin(), regs.end(), target) == regs.end()){
+            return fw_byte_manip::ErrorMessage("Invalid input", target + " is not a valid register").to_string();
+        }
         
         std::string direction = args.at(2);
         

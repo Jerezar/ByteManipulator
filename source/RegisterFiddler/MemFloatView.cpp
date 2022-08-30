@@ -7,8 +7,6 @@ namespace register_fiddler{
     std::string MemFloatView::display(){
         std::ostringstream result;
         
-        std::cout << "TestTest" << std::endl;
-        
         MemBlock mem = fiddler->getMem();
         int stepsize = sizeof(float);
         
@@ -20,7 +18,7 @@ namespace register_fiddler{
                ByteChain bytes = mem->read(i+j, stepsize);
                bytes.dump(&val, stepsize);
                result << std::hex << std::setw(8) << i + j << ": " << std::dec;
-               result << std::to_string(val) << std::endl;
+               result << val << std::endl;
            }
            result << std::endl;
         }

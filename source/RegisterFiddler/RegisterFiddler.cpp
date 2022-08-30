@@ -7,6 +7,8 @@ namespace register_fiddler{
     const uint8_t RegisterFiddler::zeroFlag = 1 << 1;
     const uint8_t RegisterFiddler::parityFlag = 1 << 2;
     
+    const std::string RegisterFiddler::flagRegister = "flags";
+    
     uint8_t RegisterFiddler::get(std::string source){
         return registers->get(source);
     }
@@ -15,7 +17,11 @@ namespace register_fiddler{
         registers->set(target, value);
     }
     void RegisterFiddler::move(std::string target, std::string source){
-        this->move(target, registers->get(source));
+        if(source == RegisterFiddler::flagRegister){
+            this->move(target, this->getFlags());
+        } else {
+            this->move(target, registers->get(source));
+        }
     }
     
     /**
